@@ -1,489 +1,475 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1024班 · 学社出场与分组（修正版）</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Mohsi · 汐子 · 属性条</title>
+<link href="装饰.css"rel ="stylesheet" type="text/css"/>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-        }
-        body {
-            background: #f5f7fb;
-            margin: 24px;
-            display: flex;
-            justify-content: center;
-        }
-        .dashboard {
-            max-width: 1400px;
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            align-items: flex-start;
-        }
-        .schedule-panel {
-            flex: 1 1 360px;
-            min-width: 320px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            overflow: hidden;
-            border: 1px solid #e9eef2;
-        }
-        .schedule-panel h2 {
-            margin: 0;
-            padding: 18px 20px 12px;
-            font-weight: 600;
-            font-size: 1.5rem;
-            background: #ffffff;
-            border-bottom: 2px solid #dce3e9;
-            color: #1e2f4e;
-        }
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        .schedule-table th {
-            background: #f0f4f9;
-            font-weight: 600;
-            color: #1e3a5f;
-            padding: 14px 12px;
-            font-size: 1rem;
-            border-bottom: 2px solid #cbd6e3;
-            text-align: left;
-        }
-        .schedule-table td, .schedule-table th {
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
-            vertical-align: top;
-        }
-        .schedule-table .time-col {
-            font-weight: 600;
-            color: #2c3e50;
-            width: 60px;
-            background-color: #fafcfd;
-        }
-        .schedule-table .group-name {
-            font-weight: 500;
-            color: #0b2b40;
-        }
-        .schedule-table .leader-tag {
-            font-size: 0.8rem;
-            background: #d4e2f0;
-            color: #1e3a5f;
-            padding: 2px 8px;
-            border-radius: 30px;
-            margin-left: 8px;
-            white-space: nowrap;
-        }
-        .empty-cell {
-            color: #9aaebb;
-            font-style: italic;
-        }
-        .groups-panel {
-            flex: 2 1 600px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border: 1px solid #e9eef2;
-            overflow: hidden;
-        }
-        .groups-panel h2 {
-            margin: 0;
-            padding: 18px 20px 12px;
-            font-weight: 600;
-            font-size: 1.5rem;
-            background: #ffffff;
-            border-bottom: 2px solid #dce3e9;
-            color: #1e2f4e;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .groups-panel h2 small {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: #5e7180;
-            margin-left: auto;
-        }
-        .groups-container {
-            padding: 16px 20px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-height: 700px;
-            overflow-y: auto;
-        }
-        .group-card {
-            background: #fafcff;
-            border-radius: 18px;
-            border: 1px solid #dfe7ef;
-            padding: 14px 18px 16px;
-        }
-        .group-header {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 8px 16px;
-            margin-bottom: 12px;
-            border-bottom: 1px dashed #bccbd8;
-            padding-bottom: 8px;
-        }
-        .group-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #163a5c;
-            letter-spacing: 0.3px;
-        }
-        .group-meta {
-            font-size: 0.85rem;
-            color: #4a667b;
-            background: #e7edf5;
-            padding: 4px 12px;
-            border-radius: 30px;
-        }
-        .member-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            gap: 8px 16px;
-        }
-        .member-item {
-            display: flex;
-            align-items: baseline;
-            font-size: 0.95rem;
-            padding: 4px 0;
-        }
-        .member-id {
-            font-family: 'SF Mono', 'Menlo', monospace;
-            background: #eef3f8;
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #1e4660;
-            margin-right: 8px;
-            white-space: nowrap;
-        }
-        .member-name {
-            font-weight: 500;
-            color: #1f2e3c;
-        }
-        .leader-badge {
-            background: #1e5f8e;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 2px 10px;
-            border-radius: 30px;
-            margin-left: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-        .note-info {
-            background: #ecf3fa;
-            border-radius: 12px;
-            padding: 12px 18px;
-            color: #1d4c6e;
-            font-size: 0.9rem;
-        }
+        
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f9f3f0 0%, #f2e9f0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', 'Noto Sans TC', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+      padding: 1.5rem;
+      margin: 0;
+    }
+
+    /* 主卡片 —— 温柔、通透、带一点点灵梦式的结界感 */
+    .profile-card {
+      max-width: 680px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: linear-gradient(135deg, rgba(255, 250, 245, 0.95) 0%, rgba(250, 240, 250, 0.9) 100%);
+      border-radius: 36px;
+      box-shadow: 0 20px 40px -12px rgba(60, 30, 60, 0.2), 0 8px 24px -8px rgba(100, 60, 120, 0.1), 0 0 0 1px rgba(200, 170, 220, 0.15) inset;
+      padding: 2rem 1.8rem 2rem 1.8rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(210, 180, 230, 0.3);
+    }
+
+    /* 所有标题样式一致 */
+    .section-title {
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+      color: #5e3a5e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 4px solid #b687b6;
+      padding-left: 12px;
+    }
+
+    .section-title i {
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+
+    /* 头部区域：名字 + 基本身份 */
+    .header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .name-pronounce {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 10px;
+    }
+
+    .main-name {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2d1b2e;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-shadow: 2px 2px 0 rgba(230, 200, 240, 0.2);
+    }
+
+    .sub-name {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #7a5d7a;
+      margin-left: 2px;
+    }
+
+    .wave-emoji {
+      font-size: 1.8rem;
+      margin-right: 4px;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 10px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      background: rgba(230, 210, 240, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #3b2a3e;
+      border: 1px solid rgba(170, 130, 190, 0.25);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 校徽图片样式 — 与文字自然对齐 */
+    .badge-logo {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      border-radius: 4px;  /* 若校徽为方形可微调 */
+      vertical-align: middle;
+    }
+
+    .ip-badge {
+      background: #d9c9e8;
+      border-color: #b698c7;
+    }
+
+    /* 分隔线 — 纤细但存在感刚好 */
+    .divider {
+      margin: 1.6rem 0 1.4rem 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c8b0d4, #dac0e0, #c8b0d4, transparent);
+      border: 0;
+    }
+
+    /* 兴趣标签组 — 像浮在纸上的小贴纸 */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-bottom: 0.2rem;
+    }
+
+    .tag-item {
+      background: rgba(255, 245, 250, 0.7);
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      color: #3d2c40;
+      border: 1px solid #eddaf0;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 2px 6px rgba(140, 90, 150, 0.05);
+      transition: all 0.1s ease;
+      line-height: 1.5;
+    }
+
+    .tag-item strong {
+      font-weight: 600;
+      color: #794f7c;
+    }
+
+    /* 特殊箭头符号保留原样 */
+    .arrow-bullet {
+      margin-right: 4px;
+      font-size: 1.1em;
+    }
+
+    /* 列表块（雷区 / 提示） */
+    .note-list {
+      list-style: none;
+      margin-top: 0.25rem;
+    }
+
+    .note-list li {
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.96rem;
+      color: #2e2a30;
+      line-height: 1.5;
+    }
+
+    .bullet-icon {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      color: #a170a1;
+      font-weight: 500;
+    }
+
+    .soft-warning {
+      background: rgba(240, 225, 240, 0.5);
+      border-radius: 18px;
+      padding: 0.2rem 1rem 0.2rem 0.8rem;
+    }
+
+    /* NG区域特殊底色 —— 温柔的红色警示，但保持边界感 */
+    .ng-block {
+      background: rgba(250, 230, 230, 0.4);
+      border-radius: 24px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(210, 140, 150, 0.25);
+      backdrop-filter: blur(4px);
+    }
+
+    .ng-title {
+      font-weight: 700;
+      color: #9e4e5e;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ng-item {
+      display: flex;
+      margin-bottom: 0.55rem;
+      font-size: 0.96rem;
+      color: #402c32;
+    }
+
+    .ng-marker {
+      color: #b15e6e;
+      margin-right: 10px;
+      font-weight: 600;
+    }
+
+    .ng-footnote {
+      margin-top: 0.8rem;
+      padding-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #7f5470;
+      border-top: 1px dashed #dbb6c0;
+      font-style: italic;
+    }
+
+    /* 道歉/软提示区域 */
+    .apology-text {
+      background: rgba(220, 200, 230, 0.2);
+      padding: 0.9rem 1.2rem;
+      border-radius: 24px;
+      margin: 1.2rem 0 1.5rem 0;
+      font-size: 0.95rem;
+      color: #4f3a52;
+      border-left: 3px solid #b594c2;
+    }
+
+    /* 结尾语 */
+    .footer-note {
+      margin-top: 1.8rem;
+      text-align: right;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #5f4662;
+      border-top: 1px dashed #d6bedd;
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-note span:first-child {
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .footer-note .heart-deco {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    /* 响应式小调整 */
+    @media (max-width: 480px) {
+      body {
+        padding: 0.8rem;
+      }
+      .profile-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 28px;
+      }
+      .main-name {
+        font-size: 1.8rem;
+      }
+      .badge {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+      }
+      .ng-block {
+        padding: 1rem 1.2rem;
+      }
+    }
+
+    /* 保留所有原始箭头/表情 */
+    .preserve-emoji {
+      font-size: 1.1em;
+    }
+
+    /* 用于强制换行但保留格式 */
+    .inline-code {
+      background: transparent;
+    }
+
+    /* 小彩蛋：耿鬼暗影感 */
+    .ghost-glow {
+      transition: all 0.2s;
+    }
+
     </style>
 </head>
 <body>
-<div class="dashboard">
-    <!-- 左侧：出场表（不变，清晰展示） -->
-    <div class="schedule-panel">
-        <h2> 出场安排 · 24班</h2>
-        <table class="schedule-table">
-            <thead>
-                <tr><th>节次</th><th>周四</th><th>周五</th></tr>
-            </thead>
-            <tbody>
-                <tr><td class="time-col">1</td><td><span class="group-name">无名组</span> <span class="leader-tag">郭子若</span></td><td><span class="group-name">岭南人</span> <span class="leader-tag">史天乐</span></td></tr>
-                <tr><td class="time-col">2</td><td><span class="group-name">你画我猜</span> <span class="leader-tag">李启暄</span></td><td><span class="group-name">野獸先輩</span> <span class="leader-tag">张子墨</span></td></tr>
-                <tr><td class="time-col">3</td><td><span class="group-name">五人同文组</span> <span class="leader-tag">周若渔</span></td><td><span class="group-name">文学组</span> <span class="leader-tag">朱茹慧</span></td></tr>
-                <tr><td class="time-col">4</td><td><span class="group-name">五虎上将</span> <span class="leader-tag">刘天慧</span></td><td class="empty-cell">——</td></tr>
-                <tr><td class="time-col">5</td><td><span class="group-name">无名组</span> <span class="leader-tag">李锐昕</span></td><td class="empty-cell">——</td></tr>
-                <tr><td class="time-col">6</td><td><span class="group-name">无名组</span> <span class="leader-tag">范今越</span></td><td class="empty-cell">——</td></tr>
-                <tr><td class="time-col">7</td><td><span class="group-name">无名组</span> <span class="leader-tag">朱景林</span></td><td class="empty-cell">——</td></tr>
-            </tbody>
-        </table>
-        <div style="padding: 12px 20px 18px; color: #436684; font-size: 0.85rem; background: #f9fbfd; border-top: 1px solid #dfe6ed;">
-             组长以出场表为准 · 无名称学社统一为「无名组」
-        </div>
-    </div>
+<div class="profile-card">
 
-    <!-- 右侧：分组详情（修正版） -->
-    <div class="groups-panel">
-        <h2>
-             学社分组详情
-            <small>共49人 · 组长已校准</small>
-        </h2>
-        <div class="groups-container" id="groupsContainer"></div>
+  <!-- 头部：打招呼 + 基本身份 -->
+  <div class="header-row">
+    <div class="name-pronounce">
+      <span class="wave-emoji">👋🏻👋🏻</span>
+      <span class="main-name">Mohsi</span>
+      <span class="sub-name">（汐子）です</span>
     </div>
+  </div>
+
+  <div class="badge-group">
+    <span class="badge ip-badge">🌐 ip=港皖粵</span>
+
+    <span class="badge">
+      <img class="badge-logo" src="绿老头.png" alt="这是占位符" >
+      INFJ
+    </span>
+
+    <span class="badge">
+      <img class="badge-logo" src="hkbu校徽.png" alt="这是占位符" >
+      07大學生
+    </span>
+
+  </div>
+
+  <!-- 分割线 — 轻量分隔 -->
+  <div class="divider"></div>
+
+  <!-- 推し · 主推 -->
+  <div class="section-title">
+    <i>✨</i> 推し
+  </div>
+  <div class="tag-cloud">
+    <span class="tag-item">耿鬼 
+      <img class="badge-logo" src="耿鬼.png" alt="这是占位符" >
+    </span>
+    <span class="tag-item">科莫</span>
+    <span class="tag-item">花子君</span>
+    <span class="tag-item">博麗靈夢全肯定qwq</span>
+  </div>
+
+  <!-- 主坑 -->
+  <div style="margin-top: 1.4rem;">
+    <div class="section-title">
+      <i>🎮</i> 主坑 · 但很包容雜食🍃
+    </div>
+    <div class="tag-cloud">
+      <span class="tag-item">任天堂</span>
+      <span class="tag-item">東方</span>
+      <span class="tag-item">音樂劇</span>
+      <span class="tag-item">漢文化</span>
+      <span class="tag-item">日法文學</span>
+      <span class="tag-item">古典音樂</span>
+      <span class="tag-item">想嘗試cos</span>
+      
+    </div>
+  </div>
+
+  <!-- 淡坑 -->
+  <div style="margin-top: 1.2rem;">
+    <div class="section-title">
+      <i>🌙</i> 一些淡坑
+    </div>
+    <div class="tag-cloud">
+      <span class="tag-item">寶可夢</span>
+      <span class="tag-item">塞爾達</span>
+      <span class="tag-item">糊糊</span>
+      <span class="tag-item">五</span>
+      <span class="tag-item">光遇</span>
+    </div>
+  </div>
+
+  <!-- 音乐 嘻嘻-->
+  <div style="margin-top: 1.2rem;">
+    <div class="section-title">
+      <i>🎼</i> 音樂
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <div class="tag-cloud">
+        <span class="tag-item"><strong>舒伯特</strong></span>
+        <span class="tag-item">音樂劇 · 法扎/德扎/紅與黑/中堂</span>
+        <span class="tag-item">jpop</span>
+      </div>
+      <div class="tag-cloud">
+        <span class="tag-item">🎹 鋼琴、排簫嚴肅潛修中</span>
+        <span class="tag-item">粵語歌也喜歡…！</span>
+        <span class="tag-item">什麼都可以聽一些 🎧</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分割 · 严肃社交边界！ -->
+  <div class="divider" style="margin: 1.8rem 0 1.2rem;"></div>
+
+  <!-- 可能雷到你 · 警告 （超凶-->
+  <div class="section-title">
+    <i>💬</i> 可能雷到你
+  </div>
+  <ul class="note-list" style="margin-bottom: 0.2rem;">
+    <li><span class="bullet-icon">·</span> 二三次不分號</li>
+    <li><span class="bullet-icon">·</span> 偶爾會消失概率觸發忘回訊息</li>
+    <li><span class="bullet-icon">·</span> 說話不太直接</li>
+  </ul>
+
+  <!-- 预警 -->
+  <div class="apology-text">
+    🌱 如果哪裡讓您感到不適非常抱歉！<br>
+    話題請及時告訴我 T T <br>
+    有時候真的很會反應不過來…
+  </div>
+
+  <!-- NG 区域 — 明确边界 但还是好好先生哦 -->
+  <div class="ng-block">
+    <div class="ng-title">
+      <span>🚷 NG · 請勿觸及</span>
+      <span style="font-size:1.2rem; margin-left: auto;">⛔</span>
+    </div>
+    <div class="ng-item">
+      <span class="ng-marker">·</span> 韃靼相關遊牧民族文化一切
+    </div>
+    <div class="ng-item">
+      <span class="ng-marker">·</span> 遇到男女拳或各種贏學會block
+    </div>
+    <div class="ng-item">
+      <span class="ng-marker">·</span> 葷笑話或者相關方向抖機靈會block
+    </div>
+    <div class="ng-item">
+      <span class="ng-marker">·</span> mhy相關 | xz相關 | 時團相關
+    </div>
+    <div class="ng-footnote">
+      ※ 除了xz都可以溺愛，只要別蹬臉
+    </div>
+  </div>
+
+  <!-- 人品 + -->
+  <div class="footer-note">
+    <span>🧿 當然人品大於一切</span>
+    <span class="heart-deco">✧ ✧</span>
+  </div>
+
+  <div style="margin-top: 12px; font-size: 0.8rem; opacity: 0.55; text-align: center; letter-spacing: 1px; color: #7a5f7a;">
+    👾
+  </div>
+
 </div>
 
-<script>
-    (function() {
-        // ----- 原始数据 (完全依据Excel) -----
-        const rawGroups = [
-            { society: "文学组", members: [
-                { id: "2530026309", name: "周宇鸣", isLeader: true },
-                { id: "2530026225", name: "肖高骏", isLeader: false },
-                { id: "2530026212", name: "吴昊罡", isLeader: false },
-                { id: "2530026316", name: "朱茹慧", isLeader: false },
-                { id: "2530026025", name: "代其函", isLeader: false }
-            ]},
-            { society: "五人同文组", members: [
-                { id: "2530026304", name: "周若渔", isLeader: true },
-                { id: "2530026202", name: "王在誉", isLeader: false },
-                { id: "2530026041", name: "高艺菲", isLeader: false },
-                { id: "2530026046", name: "郭子铭", isLeader: false },
-                { id: "2530026068", name: "黄思睿", isLeader: false }
-            ]},
-            { society: "野獸先輩组", members: [
-                { id: "2530026291", name: "张子墨", isLeader: true },
-                { id: "2530026258", name: "游匡锐", isLeader: false },
-                { id: "2530026272", name: "张景皓", isLeader: false },
-                { id: "2530026074", name: "黄子轩", isLeader: false },
-                { id: "2530026218", name: "吴席之", isLeader: false }
-            ]},
-            { society: "你画我猜", members: [
-                { id: "2530026087", name: "李启暄", isLeader: true },
-                { id: "2530026108", name: "林祉含", isLeader: false },
-                { id: "2530026147", name: "彭游蝶梦", isLeader: false },
-                { id: "2530026132", name: "吕豪轩", isLeader: false },
-                { id: "2530026146", name: "彭奕暄", isLeader: false }
-            ]},
-            { society: "五虎上将", members: [
-                { id: "2530026117", name: "刘天慧", isLeader: true },
-                { id: "2530026250", name: "姚俊熙", isLeader: false },
-                { id: "2530026211", name: "吴东润", isLeader: false },
-                { id: "2530026188", name: "王舒羽", isLeader: false },
-                { id: "2530026150", name: "任美琪", isLeader: false }
-            ]},
-            // 待定组1: 范今越(原社长)、钟菁等
-            { society: "待定", members: [
-                { id: "2530026033", name: "范今越", isLeader: true },
-                { id: "2530031422", name: "钟菁", isLeader: false },
-                { id: "2530026257", name: "尹茜雯", isLeader: false },
-                { id: "2530026015", name: "陈思豫", isLeader: false },
-                { id: "2530026003", name: "敖玮", isLeader: false },
-                { id: "2430026167", name: "彭希悦", isLeader: false }
-            ]},
-            // 待定组2: 万靖然(原社长)、朱景林等
-            { society: "待定", members: [
-                { id: "2530026178", name: "万靖然", isLeader: true },
-                { id: "2530026318", name: "朱耀林", isLeader: false },
-                { id: "2530026217", name: "吴庭宇", isLeader: false },
-                { id: "2530026171", name: "田皓祯", isLeader: false },
-                { id: "2530026270", name: "张颢曦", isLeader: false },
-                { id: "2530026315", name: "朱景林", isLeader: false }
-            ]},
-            { society: "岭南人", members: [
-                { id: "2530026161", name: "史天乐", isLeader: true },
-                { id: "2530026184", name: "王楷翔", isLeader: false },
-                { id: "2530026221", name: "夏瑞", isLeader: false },
-                { id: "2530026276", name: "张瑞轩", isLeader: false },
-                { id: "2530026307", name: "周奕柯", isLeader: false },
-                { id: "2530026168", name: "唐嘉聪", isLeader: false }
-            ]},
-            // 待定组3: 郭子若(原社长)、任屹等
-            { society: "待定", members: [
-                { id: "2530026047", name: "郭子若", isLeader: true },
-                { id: "2530026151", name: "任屹", isLeader: false },
-                { id: "2530026035", name: "方琦", isLeader: false },
-                { id: "2530026102", name: "林璟瑄", isLeader: false }
-            ]},
-            // 无学社名称: 李锐昕、童扬智
-            { society: "", members: [
-                { id: "2530026088", name: "李锐昕", isLeader: false },
-                { id: "2530026175", name: "童扬智", isLeader: false }
-            ]}
-        ];
-
-        // ----- 出场表 (核心权威) -----
-        const schedule = [
-            { day: '周四', slot: 1, groupLabel: '无名组', leaderName: '郭子若' },
-            { day: '周四', slot: 2, groupLabel: '你画我猜', leaderName: '李启暄' },
-            { day: '周四', slot: 3, groupLabel: '五人同文组', leaderName: '周若渔' },
-            { day: '周四', slot: 4, groupLabel: '五虎上将', leaderName: '刘天慧' },
-            { day: '周四', slot: 5, groupLabel: '无名组', leaderName: '李锐昕' },   // 注意：李锐昕学号2530026088，原在无学社组
-            { day: '周四', slot: 6, groupLabel: '无名组', leaderName: '范今越' },
-            { day: '周四', slot: 7, groupLabel: '无名组', leaderName: '朱景林' },
-            { day: '周五', slot: 1, groupLabel: '岭南人', leaderName: '史天乐' },
-            { day: '周五', slot: 2, groupLabel: '野獸先輩', leaderName: '张子墨' },
-            { day: '周五', slot: 3, groupLabel: '文学组', leaderName: '朱茹慧' }
-        ];
-
-        // ---------- 构建姓名到成员对象的映射 ----------
-        const allMembersMap = new Map();  // name -> { id, name, originalSociety, originalIsLeader }
-        rawGroups.forEach(g => {
-            g.members.forEach(m => {
-                allMembersMap.set(m.name, {
-                    id: m.id,
-                    name: m.name,
-                    originalSociety: g.society,
-                    originalIsLeader: m.isLeader
-                });
-            });
-        });
-
-        // 辅助：根据组长姓名找到其所在的原始小组（返回该组所有成员）
-        function findOriginalGroupByLeader(leaderName) {
-            for (let g of rawGroups) {
-                if (g.members.some(m => m.name === leaderName)) {
-                    return g;
-                }
-            }
-            return null;
-        }
-
-        const finalGroups = [];
-        const usedNames = new Set();  // 已分配到某个出场组的成员
-
-        // ---------- 处理出场表：每个出场创建一个小组 ----------
-        schedule.forEach(item => {
-            const leader = item.leaderName;
-            const displayLabel = item.groupLabel; // "无名组" / "你画我猜" 等
-
-            // 找到组长所在的原始组
-            const sourceGroup = findOriginalGroupByLeader(leader);
-            
-            let groupMembers = [];
-            let finalDisplayName = displayLabel;
-
-            if (sourceGroup) {
-                // 使用原始组所有成员，并重新设定组长为当前leader
-                groupMembers = sourceGroup.members.map(m => ({
-                    id: m.id,
-                    name: m.name,
-                    isLeader: (m.name === leader)   // 以出场表为准
-                }));
-
-                // 若原始学社为“待定”或空字符串，统一显示为“无名组 · 组长名”
-                if (sourceGroup.society === '待定' || sourceGroup.society === '') {
-                    finalDisplayName = `无名组 · ${leader}`;
-                } 
-            } else {
-                // 极端情况：组长不在任何组中（如李锐昕单独出现），则创建只包含组长本人的组，并尝试补充未分配的同原始组成员
-                const memberInfo = allMembersMap.get(leader);
-                if (memberInfo) {
-                    groupMembers = [{ id: memberInfo.id, name: leader, isLeader: true }];
-                    // 尝试将与该组长同属一个空白学社的其他未分配成员拉进来（比如李钥昕和童扬智原本一组）
-                    const blankGroup = rawGroups.find(g => g.society === '' && g.members.some(m => m.name === leader));
-                    if (blankGroup) {
-                        blankGroup.members.forEach(m => {
-                            if (!usedNames.has(m.name) && m.name !== leader) {
-                                groupMembers.push({ id: m.id, name: m.name, isLeader: false });
-                            }
-                        });
-                    }
-                } else {
-                    console.warn(`组长 ${leader} 在总名单中不存在`);
-                    return;
-                }
-                finalDisplayName = `无名组 · ${leader}`;
-            }
-
-            // 标记这些成员已使用
-            groupMembers.forEach(m => usedNames.add(m.name));
-
-            finalGroups.push({
-                displayName: finalDisplayName,
-                members: groupMembers,
-                leaderName: leader,
-                isFromSchedule: true
-            });
-        });
-
-        // ---------- 处理剩余未出场成员 ----------
-        const remainingMembers = [];
-        for (let [name, info] of allMembersMap.entries()) {
-            if (!usedNames.has(name)) {
-                remainingMembers.push({
-                    id: info.id,
-                    name: info.name,
-                    originalSociety: info.originalSociety,
-                    isLeader: info.originalIsLeader
-                });
-            }
-        }
-
-        // 按原始学社聚合剩余成员
-        const remainingBySociety = new Map();
-        remainingMembers.forEach(m => {
-            const soc = m.originalSociety || '未分组';
-            if (!remainingBySociety.has(soc)) {
-                remainingBySociety.set(soc, []);
-            }
-            remainingBySociety.get(soc).push(m);
-        });
-
-        for (let [soc, members] of remainingBySociety.entries()) {
-            if (members.length === 0) continue;
-            // 保留原始组长标记
-            const leaderMember = members.find(m => m.isLeader) || members[0];
-            let display = (soc === '待定' || soc === '未分组') ? `无名组 · ${leaderMember.name}` : soc;
-            finalGroups.push({
-                displayName: display,
-                members: members.map(m => ({ ...m, isLeader: m.name === leaderMember.name })),
-                leaderName: leaderMember.name,
-                isRemainder: true
-            });
-        }
-
-      
-
-        // 特殊修正：范今越组应显示为“无名组 · 范今越”，成员必须包含钟菁等人（已包含）
-        // 李锐昕组：因李锐昕不在任何常规组，已单独成组，组员包括李钥昕、童扬智，命名为“无名组 · 李锐昕”
-
-        // ---------- 渲染 ----------
-        function render() {
-            const container = document.getElementById('groupsContainer');
-            // 排序：出场组优先，剩余组在后
-            const sorted = [...finalGroups].sort((a, b) => {
-                if (a.isFromSchedule && !b.isFromSchedule) return -1;
-                if (!a.isFromSchedule && b.isFromSchedule) return 1;
-                return 0;
-            });
-
-            let html = '';
-            sorted.forEach(group => {
-                const members = group.members;
-                if (!members.length) return;
-                const leader = members.find(m => m.isLeader) || members[0];
-                
-                let membersHtml = '';
-                members.forEach(m => {
-                    membersHtml += `
-                        <div class="member-item">
-                            <span class="member-id">${m.id}</span>
-                            <span class="member-name">${m.name}</span>
-                            ${m.isLeader ? '<span class="leader-badge">社长</span>' : ''}
-                        </div>
-                    `;
-                });
-
-                html += `
-                    <div class="group-card">
-                        <div class="group-header">
-                            <span class="group-title">${group.displayName}</span>
-                            <span class="group-meta">👥 ${members.length}人 · 组长 ${leader.name}</span>
-                        </div>
-                        <div class="member-list">${membersHtml}</div>
-                    </div>
-                `;
-            });
-
-            const total = finalGroups.reduce((s, g) => s + g.members.length, 0);
-         
-            container.innerHTML = html;
-        }
-
-        render();
-    })();
-</script>
 </body>
 </html>
