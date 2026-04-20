@@ -1,0 +1,314 @@
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f9f3f0 0%, #f2e9f0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', 'Noto Sans TC', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+      padding: 1.5rem;
+      margin: 0;
+    }
+
+    /* 主卡片 —— 温柔、通透、带一点点灵梦式的结界感 */
+    .profile-card {
+      max-width: 680px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: linear-gradient(135deg, rgba(255, 250, 245, 0.95) 0%, rgba(250, 240, 250, 0.9) 100%);
+      border-radius: 36px;
+      box-shadow: 0 20px 40px -12px rgba(60, 30, 60, 0.2), 0 8px 24px -8px rgba(100, 60, 120, 0.1), 0 0 0 1px rgba(200, 170, 220, 0.15) inset;
+      padding: 2rem 1.8rem 2rem 1.8rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(210, 180, 230, 0.3);
+    }
+
+    /* 所有标题样式一致 */
+    .section-title {
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+      color: #5e3a5e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 4px solid #b687b6;
+      padding-left: 12px;
+    }
+
+    .section-title i {
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+
+    /* 头部区域：名字 + 基本身份 */
+    .header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .name-pronounce {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 10px;
+    }
+
+    .main-name {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2d1b2e;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-shadow: 2px 2px 0 rgba(230, 200, 240, 0.2);
+    }
+
+    .sub-name {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #7a5d7a;
+      margin-left: 2px;
+    }
+
+    .wave-emoji {
+      font-size: 1.8rem;
+      margin-right: 4px;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 10px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      background: rgba(230, 210, 240, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #3b2a3e;
+      border: 1px solid rgba(170, 130, 190, 0.25);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 校徽图片样式 — 与文字自然对齐 */
+    .badge-logo {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      border-radius: 4px;  /* 若校徽为方形可微调 */
+      vertical-align: middle;
+    }
+
+    .ip-badge {
+      background: #d9c9e8;
+      border-color: #b698c7;
+    }
+
+    /* 分隔线 — 纤细但存在感刚好 */
+    .divider {
+      margin: 1.6rem 0 1.4rem 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c8b0d4, #dac0e0, #c8b0d4, transparent);
+      border: 0;
+    }
+
+    /* 兴趣标签组 — 像浮在纸上的小贴纸 */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-bottom: 0.2rem;
+    }
+
+    .tag-item {
+      background: rgba(255, 245, 250, 0.7);
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      color: #3d2c40;
+      border: 1px solid #eddaf0;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 2px 6px rgba(140, 90, 150, 0.05);
+      transition: all 0.1s ease;
+      line-height: 1.5;
+    }
+
+    .tag-item strong {
+      font-weight: 600;
+      color: #794f7c;
+    }
+
+    /* 特殊箭头符号保留原样 */
+    .arrow-bullet {
+      margin-right: 4px;
+      font-size: 1.1em;
+    }
+
+    /* 列表块（雷区 / 提示） */
+    .note-list {
+      list-style: none;
+      margin-top: 0.25rem;
+    }
+
+    .note-list li {
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.96rem;
+      color: #2e2a30;
+      line-height: 1.5;
+    }
+
+    .bullet-icon {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      color: #a170a1;
+      font-weight: 500;
+    }
+
+    .soft-warning {
+      background: rgba(240, 225, 240, 0.5);
+      border-radius: 18px;
+      padding: 0.2rem 1rem 0.2rem 0.8rem;
+    }
+
+    /* NG区域特殊底色 —— 温柔的红色警示，但保持边界感 */
+    .ng-block {
+      background: rgba(250, 230, 230, 0.4);
+      border-radius: 24px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(210, 140, 150, 0.25);
+      backdrop-filter: blur(4px);
+    }
+
+    .ng-title {
+      font-weight: 700;
+      color: #9e4e5e;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ng-item {
+      display: flex;
+      margin-bottom: 0.55rem;
+      font-size: 0.96rem;
+      color: #402c32;
+    }
+
+    .ng-marker {
+      color: #b15e6e;
+      margin-right: 10px;
+      font-weight: 600;
+    }
+
+    .ng-footnote {
+      margin-top: 0.8rem;
+      padding-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #7f5470;
+      border-top: 1px dashed #dbb6c0;
+      font-style: italic;
+    }
+
+    /* 道歉/软提示区域 */
+    .apology-text {
+      background: rgba(220, 200, 230, 0.2);
+      padding: 0.9rem 1.2rem;
+      border-radius: 24px;
+      margin: 1.2rem 0 1.5rem 0;
+      font-size: 0.95rem;
+      color: #4f3a52;
+      border-left: 3px solid #b594c2;
+    }
+
+    /* 结尾语 */
+    .footer-note {
+      margin-top: 1.8rem;
+      text-align: right;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #5f4662;
+      border-top: 1px dashed #d6bedd;
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-note span:first-child {
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .footer-note .heart-deco {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    /* 响应式小调整 */
+    @media (max-width: 480px) {
+      body {
+        padding: 0.8rem;
+      }
+      .profile-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 28px;
+      }
+      .main-name {
+        font-size: 1.8rem;
+      }
+      .badge {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+      }
+      .ng-block {
+        padding: 1rem 1.2rem;
+      }
+    }
+
+    /* 保留所有原始箭头/表情 */
+    .preserve-emoji {
+      font-size: 1.1em;
+    }
+
+    /* 用于强制换行但保留格式 */
+    .inline-code {
+      background: transparent;
+    }
+
+    /* 小彩蛋：耿鬼暗影感 */
+    .ghost-glow {
+      transition: all 0.2s;
+    }
