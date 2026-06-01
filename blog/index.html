@@ -7,322 +7,402 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@350;400;500;600&display=swap" rel="stylesheet">
   <link rel="alternate" href="/blog/atom.xml" title="汐子的博客" type="application/atom+xml">
   <style>
   /* ============================================================
-     WASHI THEME — 和紙 · 极简博客
+     編集長 THEME — Literary magazine aesthetic
      ============================================================ */
   :root {
-    --bg: #fdfaf6;
-    --card: #ffffff;
-    --text: #2c2416;
-    --text-light: #6b6355;
-    --text-muted: #9b9385;
-    --accent: #8b7355;
-    --accent-light: #c4a882;
-    --border: #e8e0d5;
-    --border-light: #f0ebe0;
-    --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --bg:        #fcfaf7;
+    --text:      #1e1b18;
+    --text-soft: #4a4540;
+    --text-faint:#8a8278;
+    --accent:    #8b6f47;
+    --accent-dim:#b8996b;
+    --rule:      #e4ddd2;
+    --rule-light:#f0ebe2;
+    --paper:     #fefdfb;
+    --code-bg:   #f5f2ec;
   }
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
   body {
-    font-family: 'Noto Serif SC', 'Georgia', 'Times New Roman', serif;
+    font-family: 'Noto Serif SC', 'Georgia', 'Songti SC', serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.85;
+    line-height: 1.9;
     font-size: 16px;
-    min-height: 100vh;
+    font-weight: 400;
   }
 
   /* ── Container ── */
   .container {
-    max-width: 680px;
+    max-width: 640px;
     margin: 0 auto;
     padding: 0 1.8rem;
   }
 
-  /* ── Navigation Bar ── */
-  .nav-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.6rem 0;
-    border-bottom: 1px solid var(--border-light);
-    margin-bottom: 3rem;
+  /* ── Masthead — all left-aligned ── */
+  .masthead {
+    padding: 3.5rem 0 1.8rem;
   }
-  .nav-brand {
-    font-family: 'Inter', 'Noto Serif SC', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
+  .masthead .blog-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
     color: var(--text);
+    letter-spacing: 0.04em;
     text-decoration: none;
-    letter-spacing: -0.01em;
+    display: block;
+    margin-bottom: 1rem;
   }
-  .nav-brand:hover { color: var(--accent); }
-  .nav-links {
-    display: flex; gap: 1.8rem; list-style: none;
+  .masthead .blog-title:hover { color: var(--accent); }
+  .masthead .blog-nav {
+    display: flex; gap: 1.6rem; list-style: none;
+    flex-wrap: wrap;
   }
-  .nav-links a {
-    font-family: 'Inter', 'Noto Serif SC', sans-serif;
-    font-size: 0.82rem;
+  .masthead .blog-nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
     font-weight: 500;
-    color: var(--text-light);
+    color: var(--text-faint);
     text-decoration: none;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     transition: color 0.2s;
-    padding-bottom: 2px;
+    padding-bottom: 3px;
   }
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a.current {
+  .masthead .blog-nav a:hover { color: var(--text); }
+  .masthead .blog-nav a.current {
     color: var(--accent);
-    border-bottom: 2px solid var(--accent-light);
+    border-bottom: 1.5px solid var(--accent-dim);
+  }
+  .masthead-rule {
+    border: none;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 0 2.8rem;
   }
 
-  /* ── Article List (Index) ── */
+  /* ── Homepage Intro ── */
+  .home-intro {
+    margin-bottom: 2.6rem;
+  }
+  .home-intro .tagline {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .home-intro .placeholder-note {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    line-height: 1.7;
+    border-left: 2px solid var(--rule);
+    padding-left: 1rem;
+  }
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Article List ── */
   .post-list { list-style: none; }
   .post-item {
-    padding: 1.8rem 0;
-    border-bottom: 1px solid var(--border-light);
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule-light);
+    transition: border-color 0.2s;
   }
+  .post-item:hover { border-color: var(--rule); }
   .post-item:first-child { padding-top: 0; }
   .post-meta {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem;
-    margin-bottom: 0.35rem;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+    margin-bottom: 0.3rem;
   }
   .post-date {
     font-family: 'Inter', sans-serif;
-    font-size: 0.78rem; color: var(--text-muted);
-    letter-spacing: 0.03em;
+    font-size: 0.75rem; font-weight: 400;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
   }
   .post-category {
     font-family: 'Inter', sans-serif;
-    font-size: 0.72rem; font-weight: 500;
+    font-size: 0.68rem; font-weight: 500;
     color: var(--accent);
-    background: rgba(139,115,85,0.08);
-    padding: 2px 10px; border-radius: 3px;
+    background: rgba(139,111,71,0.07);
+    padding: 2px 9px; border-radius: 3px;
     text-decoration: none;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
   }
-  .post-category:hover { background: rgba(139,115,85,0.15); }
+  .post-category:hover { background: rgba(139,111,71,0.14); }
   .post-title {
-    font-size: 1.25rem; font-weight: 600;
-    line-height: 1.45; margin-bottom: 0.4rem;
+    font-size: 1.18rem; font-weight: 600;
+    line-height: 1.5; margin-bottom: 0.3rem;
+    letter-spacing: 0.01em;
   }
   .post-title a {
     color: var(--text); text-decoration: none;
-    transition: color 0.2s;
+    background: linear-gradient(var(--accent-dim), var(--accent-dim)) left bottom / 0 1px no-repeat;
+    transition: background-size 0.3s, color 0.2s;
+    padding-bottom: 1px;
   }
-  .post-title a:hover { color: var(--accent); }
+  .post-title a:hover { background-size: 100% 1px; color: var(--accent); }
   .post-excerpt {
-    font-size: 0.9rem; color: var(--text-light);
-    line-height: 1.75; margin-top: 0.4rem;
+    font-size: 0.88rem; color: var(--text-soft);
+    line-height: 1.8;
   }
   .post-excerpt p { margin-bottom: 0; }
   .read-more {
-    display: inline-block; margin-top: 0.7rem;
+    display: inline-block; margin-top: 0.6rem;
     font-family: 'Inter', sans-serif;
-    font-size: 0.78rem; font-weight: 500;
-    color: var(--accent); text-decoration: none;
-    letter-spacing: 0.02em;
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--accent-dim); text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
   }
-  .read-more:hover { text-decoration: underline; }
+  .read-more:hover { color: var(--accent); }
+
+  /* ── Empty state ── */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--text-faint);
+    font-style: italic;
+    font-size: 0.95rem;
+  }
 
   /* ── Single Post ── */
-  .single-post { padding-bottom: 3rem; }
+  .single-post { padding-bottom: 3.5rem; }
   .single-post .post-header { margin-bottom: 2rem; }
   .single-post .post-title {
-    font-size: 1.7rem; font-weight: 700;
-    line-height: 1.4; margin-bottom: 0.6rem;
+    font-size: 1.65rem; font-weight: 700;
+    line-height: 1.45; margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
   }
   .single-post .post-meta { margin-bottom: 1.5rem; }
   .single-post .post-content {
-    font-size: 1rem; line-height: 1.9;
+    font-size: 0.98rem; line-height: 2;
     color: var(--text);
+    letter-spacing: 0.01em;
   }
   .single-post .post-content h1,
   .single-post .post-content h2,
   .single-post .post-content h3 {
-    font-weight: 600; margin: 2rem 0 0.8rem;
-    line-height: 1.4;
+    font-weight: 600; margin: 2.2rem 0 0.7rem;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
   }
   .single-post .post-content h2 {
-    font-size: 1.3rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--border-light);
+    font-size: 1.2rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--rule-light);
   }
-  .single-post .post-content h3 { font-size: 1.1rem; }
-  .single-post .post-content p { margin-bottom: 1.1rem; }
+  .single-post .post-content h3 { font-size: 1.05rem; }
+  .single-post .post-content p { margin-bottom: 1rem; }
   .single-post .post-content ul, .single-post .post-content ol {
-    margin: 0.6rem 0 1.1rem 1.5rem;
+    margin: 0.5rem 0 1rem 1.4rem;
   }
-  .single-post .post-content li { margin-bottom: 0.3rem; line-height: 1.8; }
+  .single-post .post-content li { margin-bottom: 0.25rem; line-height: 1.85; }
+  .single-post .post-content strong { font-weight: 600; color: #1a1714; }
   .single-post .post-content a {
     color: var(--accent); text-decoration: underline;
-    text-decoration-color: var(--accent-light);
-    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-dim);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
   }
-  .single-post .post-content a:hover { color: #6b5230; }
+  .single-post .post-content a:hover { color: #6b4f2a; text-decoration-color: #6b4f2a; }
   .single-post .post-content blockquote {
-    margin: 1.3rem 0; padding: 0.8rem 1.3rem;
-    background: rgba(139,115,85,0.04);
-    border-left: 3px solid var(--accent-light);
-    color: var(--text-light); font-style: italic;
-    border-radius: 0 6px 6px 0;
+    margin: 1.2rem 0; padding: 0.7rem 1.2rem;
+    background: rgba(139,111,71,0.03);
+    border-left: 3px solid var(--accent-dim);
+    color: var(--text-soft);
+    border-radius: 0 5px 5px 0;
+    font-style: italic;
   }
   .single-post .post-content blockquote p:last-child { margin-bottom: 0; }
   .single-post .post-content hr {
     border: none; height: 1px;
-    background: var(--border-light); margin: 2rem 0;
+    background: var(--rule-light); margin: 2rem 0;
   }
   .single-post .post-content code {
-    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-    font-size: 0.85em;
+    font-family: 'SF Mono','Cascadia Code','Fira Code','Consolas',monospace;
+    font-size: 0.84em; font-weight: 400;
     background: rgba(0,0,0,0.04);
     padding: 2px 6px; border-radius: 3px;
   }
   .single-post .post-content pre {
-    background: #f5f2ed;
-    padding: 1.2rem; border-radius: 8px;
+    background: var(--code-bg);
+    padding: 1.1rem 1.3rem; border-radius: 8px;
     overflow-x: auto; margin: 1.2rem 0;
-    border: 1px solid var(--border);
+    border: 1px solid var(--rule);
   }
   .single-post .post-content pre code {
-    background: none; padding: 0; font-size: 0.82rem;
-    line-height: 1.7;
+    background: none; padding: 0; font-size: 0.81rem;
+    line-height: 1.75;
   }
   .single-post .post-content img {
     max-width: 100%; border-radius: 6px;
     margin: 1rem 0;
   }
   .single-post .post-tags {
-    margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 6px;
   }
   .single-post .post-tags a {
     font-family: 'Inter', sans-serif;
-    font-size: 0.75rem; color: var(--text-muted);
+    font-size: 0.72rem; color: var(--text-faint);
     text-decoration: none;
     padding: 3px 10px;
-    background: var(--bg);
-    border: 1px solid var(--border);
+    background: var(--paper);
+    border: 1px solid var(--rule);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .single-post .post-tags a:hover {
-    border-color: var(--accent-light);
+    border-color: var(--accent-dim);
     color: var(--accent);
   }
 
   /* ── Post Navigation ── */
   .post-nav {
-    display: flex; justify-content: space-between;
-    margin-top: 2.5rem; padding-top: 1.5rem;
-    border-top: 1px solid var(--border-light);
+    display: flex; justify-content: space-between; gap: 1rem;
+    margin-top: 2.2rem; padding-top: 1.3rem;
+    border-top: 1px solid var(--rule-light);
     font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
-  .post-nav a { color: var(--accent); text-decoration: none; }
-  .post-nav a:hover { text-decoration: underline; }
+  .post-nav a { color: var(--accent-dim); text-decoration: none; transition: color 0.2s; }
+  .post-nav a:hover { color: var(--accent); }
   .post-nav .prev, .post-nav .next { max-width: 48%; }
 
-  /* ── Page (关于 etc.) ── */
-  .static-page { padding-bottom: 3rem; }
+  /* ── Static Page ── */
+  .static-page { padding-bottom: 3.5rem; }
   .static-page h1 {
-    font-size: 1.7rem; font-weight: 700;
-    margin-bottom: 1.5rem; line-height: 1.4;
+    font-size: 1.65rem; font-weight: 700;
+    margin-bottom: 1.5rem; line-height: 1.45;
+    letter-spacing: 0.02em;
   }
   .static-page .page-content {
-    font-size: 1rem; line-height: 1.9;
+    font-size: 0.98rem; line-height: 2;
     color: var(--text);
+    letter-spacing: 0.01em;
   }
-  .static-page .page-content p { margin-bottom: 1.1rem; }
+  .static-page .page-content p { margin-bottom: 1rem; }
   .static-page .page-content a {
     color: var(--accent); text-decoration: underline;
-    text-decoration-color: var(--accent-light);
-    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-dim);
+    text-underline-offset: 4px;
+  }
+  .static-page .page-content h2 {
+    font-size: 1.15rem; font-weight: 600;
+    margin: 2rem 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--rule-light);
   }
 
   /* ── Archive Page ── */
-  .archive-list { list-style: none; }
   .archive-year {
-    font-size: 1.15rem; font-weight: 600;
+    font-size: 1.1rem; font-weight: 600;
     color: var(--text);
-    margin: 2rem 0 0.8rem;
+    margin: 2rem 0 0.7rem;
     padding-bottom: 0.3rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--rule);
+    letter-spacing: 0.02em;
   }
   .archive-item {
     display: flex; align-items: baseline; gap: 1rem;
-    padding: 0.5rem 0;
+    padding: 0.45rem 0;
   }
   .archive-item .archive-date {
     font-family: 'Inter', sans-serif;
-    font-size: 0.78rem; color: var(--text-muted);
-    white-space: nowrap; min-width: 80px;
+    font-size: 0.75rem; color: var(--text-faint);
+    white-space: nowrap; min-width: 64px;
   }
   .archive-item a {
     color: var(--text); text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     transition: color 0.2s;
   }
   .archive-item a:hover { color: var(--accent); }
 
   /* ── Pagination ── */
   .pagination {
-    display: flex; justify-content: center; gap: 0.5rem;
-    margin-top: 2.5rem; padding-top: 1.5rem;
-    border-top: 1px solid var(--border-light);
-    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    display: flex; justify-content: center; gap: 6px;
+    margin-top: 2.2rem; padding-top: 1.3rem;
+    border-top: 1px solid var(--rule-light);
+    font-family: 'Inter', sans-serif; font-size: 0.82rem;
   }
   .pagination a, .pagination span {
     display: inline-flex; align-items: center; justify-content: center;
-    min-width: 2rem; height: 2rem; padding: 0 0.5rem;
+    min-width: 2rem; height: 2rem; padding: 0 8px;
     text-decoration: none; border-radius: 4px;
-    color: var(--text-light);
+    color: var(--text-soft);
   }
-  .pagination a:hover { background: var(--border-light); }
+  .pagination a:hover { background: var(--rule-light); }
   .pagination span.current {
     background: var(--accent); color: #fff; font-weight: 600;
+    box-shadow: 0 1px 3px rgba(139,111,71,0.2);
   }
 
   /* ── Footer ── */
   .site-footer {
-    margin-top: 4rem; padding: 2rem 0;
-    border-top: 1px solid var(--border-light);
-    text-align: center;
+    margin-top: 4rem; padding: 1.8rem 0 3rem;
+    border-top: 1px solid var(--rule-light);
     font-family: 'Inter', sans-serif;
-    font-size: 0.78rem; color: var(--text-muted);
-    letter-spacing: 0.02em;
+    font-size: 0.73rem; color: var(--text-faint);
+    letter-spacing: 0.03em;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; flex-wrap: wrap; gap: 1rem;
   }
-  .site-footer a { color: var(--accent); text-decoration: none; }
-  .site-footer a:hover { text-decoration: underline; }
+  .site-footer a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+  .site-footer a:hover { color: var(--accent); }
+  .site-footer .footer-left { opacity: 0.7; }
+  .site-footer .footer-right { opacity: 0.5; font-style: italic; }
 
   /* ── Responsive ── */
   @media (max-width: 600px) {
     .container { padding: 0 1.2rem; }
-    .nav-bar { flex-direction: column; gap: 0.8rem; }
-    .nav-links { gap: 1.2rem; }
-    .single-post .post-title { font-size: 1.4rem; }
+    .masthead { padding: 2.5rem 0 1.5rem; }
+    .masthead .blog-title { font-size: 1.35rem; }
+    .masthead .blog-nav { gap: 1.1rem; }
+    .single-post .post-title { font-size: 1.35rem; }
+    .site-footer { flex-direction: column; gap: 0.5rem; }
   }
   </style>
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
   <div class="container">
-    <nav class="nav-bar">
-  <a class="nav-brand" href="/blog/">汐子的博客</a>
-  <ul class="nav-links">
-    <li><a href="https://mohsichi.github.io/">首页</a></li>
-    <li><a href="/blog/archives" >文章列表</a></li>
-    <li><a href="/blog/about" >关于</a></li>
-  </ul>
-</nav>
+    <header class="masthead">
+  <a class="blog-title" href="/blog/">汐子的博客</a>
+  <nav>
+    <ul class="blog-nav">
+      <li><a href="https://mohsichi.github.io/">首页</a></li>
+      <li><a href="/blog/archives" >文章列表</a></li>
+      <li><a href="/blog/about" >关于</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="masthead-rule">
 
-    
+    <!-- Homepage Intro -->
+<div class="home-intro">
+  <p class="tagline">一片新的原野。开始播种。</p>
+  <p class="placeholder-note">【占位符，装修中...】这里会放一段简短的个人介绍，或者最新的动态摘要。也许是一句喜欢的诗，也许是最近在想的事。</p>
+</div>
+
+<div class="section-label">Recent writings</div>
+
   <ul class="post-list">
     
       
@@ -348,8 +428,10 @@
 
 
 
+
     <footer class="site-footer">
-  <p>© 2026 <a href="https://mohsichi.github.io/">Mohsi</a> · 由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 驱动 · <a href="/blog/atom.xml">RSS</a></p>
+  <span class="footer-left">© 2026 <a href="https://mohsichi.github.io/">Mohsi</a> · <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> · <a href="/blog/atom.xml">RSS</a></span>
+  <span class="footer-right">【占位符，装修中...】</span>
 </footer>
 
   </div>
