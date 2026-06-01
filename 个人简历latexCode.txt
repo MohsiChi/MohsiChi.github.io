@@ -1,0 +1,120 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{ctexart}
+
+% === 页面设置 ===
+\usepackage{geometry}
+\geometry{left=1.8cm, right=1.8cm, top=1.2cm, bottom=1.2cm}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{graphicx}
+
+% === 配色 ===
+\definecolor{mainblue}{HTML}{1B2A4A}
+\definecolor{accentgold}{HTML}{C5A55A}
+\definecolor{darktext}{HTML}{2C3E50}
+
+% === 标题格式 ===
+\titleformat{\section}{\normalfont\Large\bfseries\color{mainblue}}{}{0em}{}[\vspace{-4pt}\titlerule\vspace{-2pt}]
+\titlespacing*{\section}{0pt}{5pt}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist{nosep,left=0pt,label={\color{black}\faAngleRight},
+         itemsep=0pt,topsep=0pt,parsep=0pt,
+         before={\vspace{-0.15em}}, after={\vspace{-0.15em}}}
+
+% === 删除页码 ===
+\pagestyle{empty}
+
+\begin{document}
+\vspace*{-18pt}   
+\vspace*{-4pt}  
+
+% ===== 头部（左侧校徽顶端对齐 + 中部个人信息） =====
+\noindent
+\begin{minipage}[t]{0.12\textwidth}
+\raggedright
+\includegraphics[height=1.0cm, keepaspectratio]{hkbu.png}  % 校徽缩小，顶端对齐
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.83\textwidth}
+\centering
+    {\LARGE \bfseries \textcolor{mainblue}{张墨汐}} \\[2pt]
+    \textcolor{darktext}{\small \faPhone \ 15989755265 \quad | \quad 
+    \faEnvelope \ moxizhang10@gmail.com\quad | \quad
+    \faCalendarCheck \ 暑期实习·随时到岗} \\[2pt]
+    \textcolor{darktext}{\small \faMapMarker* \ 安徽合肥 /大湾区\quad | \quad 
+    \faGraduationCap \ 香港浸会大学·计算机科学与技术·大一}
+\end{minipage}
+\vspace{-18pt}
+
+% ===== 教育背景 =====
+\section{\faUniversity \quad 教育背景}
+\begin{itemize}
+    \item \textbf{香港浸会大学}\hfill 2025.09 -- 至今
+\end{itemize}
+
+\textit{\small 计算机科学与技术 \ | \ 本科一年级 \ | \ 全英文教学环境}\\[2pt]
+\textbf{\small 核心课程（与岗位相关）：}
+\textcolor{darktext}{\small 面向对象编程(Java) \ | \ C语言 \ | \ 离散数学 \ | \ 线性代数 \ | \ 微积分工程 \ | \ Web与系统(HTML/CSS/JS/SQL)}
+\vspace{-11pt}
+
+% ===== 专业技能 =====
+\section{\faCog \quad 专业技能}
+
+\noindent\textbf{\small 核心开发}（熟练，项目中使用过）
+\begin{itemize}
+    \item \textbf{Java}：独立完成OOP课程设计项目，理解面向对象核心思想（封装/继承/多态），熟悉集合框架与异常处理
+    \item \textbf{SQL / 数据库}：完成Web与系统课程中的数据库设计与查询实践，能编写多表联查、子查询
+    \item \textbf{Web基础}：HTML + CSS + JavaScript，了解前后端数据交互基本流程
+\end{itemize}
+
+\vspace{-2pt}
+\noindent\textbf{\small 工程工具与通用能力}（了解，独立配置使用）
+\begin{itemize}
+    \item \textbf{Git}：使用Git进行版本控制，熟悉分支管理与协作流程
+    \item \textbf{Docker}：自学习容器化基础，能编写Dockerfile完成应用打包与部署
+    \item \textbf{Shell / Linux}：熟练使用命令行操作、Vim编辑、Shell脚本编写
+    \item \textbf{Python}：自学习用于科研实验脚本编写与数据处理
+    \item \textbf{信息检索}：学习搜索引擎原理、倒排索引构建与数据检索技术
+    \item \textbf{LaTeX}：熟练使用LaTeX撰写技术文档与实验报告
+\end{itemize}
+
+
+% ===== 项目与科研经历 =====
+\section{\faFlask \quad 项目与科研经历}
+
+\noindent\textbf{Stable Diffusion模型改进研究 \ | \ 计算机系教授课题组} \hfill 2025.12 -- 至今
+
+\textcolor{darktext}{\small 导师为前南开大学计算机系教授，课题组研究方向为扩散模型优化}
+\begin{itemize}
+    \item 独立完成FreeU（推理阶段特征调控）与ConsistStyle（风格一致性增强）两篇论文的方法复现，基于PyTorch搭建实验环境，理解扩散模型推理与微调的技术细节
+    \item 设计消融实验，评估两种方法对生成质量的影响，输出实验报告与数据记录
+    \item 尝试融合两种方法的优势，在保持生成速度的同时提升风格一致性，完成初步方案验证
+    \item \textbf{技术栈}：Python / PyTorch / Stable Diffusion / 实验记录(LaTeX撰写)
+\end{itemize}
+
+\vspace{-2pt}
+\noindent\textbf{Web开发课程项目 \ | \ 香港浸会大学} \hfill 2026.02 -- 2026.06\\
+\textcolor{darktext}{\small 全栈Web应用开发课程，使用HTML/CSS/JS/SQL完成完整网站搭建}
+\begin{itemize}
+    \item 独立完成前端页面设计与实现（HTML/CSS布局、JavaScript交互逻辑）
+    \item 设计数据库表结构，编写SQL查询实现数据的增删改查与分页展示
+    \item \textbf{技术栈}：JavaScript / HTML / CSS / SQL / Git版本控制
+\end{itemize}
+
+
+% ===== 核心优势 =====
+\section{\faStar \quad 核心优势}
+\begin{itemize}
+    \item \textbf{完整工作周期承诺}：暑假3个月全职实习，大湾区/合肥本地，无其他课程或事务，保证出勤稳定性
+    \item \textbf{科研级自学能力}：大一主动联系教授进入科研组；课外系统性自学Docker、Shell、Git等工程工具链，有完整的自学经验与路径
+    \item \textbf{文档与工程习惯}：全英文教学环境，代码提交附commit message，实验过程有LaTeX记录，具备良好的技术文档编写习惯
+    \item \textbf{AI工具应用}：将AI辅助开发深度融入科研与vibe coding，掌握prompt engineering，能快速适配新框架与工具
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,143 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{ctexart}
+
+% ========== 导言区（整合两部分的宏包与基础设置） ==========
+\usepackage{geometry}
+\geometry{left=2cm, right=2cm, top=2.2cm, bottom=2cm}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{graphicx}
+
+% === 配色 ===
+\definecolor{mainblue}{HTML}{1B2A4A}
+\definecolor{accentgold}{HTML}{C5A55A}
+\definecolor{darktext}{HTML}{2C3E50}
+
+% === 页眉页脚（前两页使用） ===
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{1pt}
+\fancyhead[L]{\textcolor{mainblue}{\textbf{家教简历}}}
+
+
+% === 标题格式（前两页的宽松样式） ===
+\titleformat{\section}{\normalfont\Large\bfseries\color{mainblue}}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{14pt}{8pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\setlist{nosep,left=0pt,label={\color{accentgold}\faAngleRight}}
+
+% ========== 文档开始 ==========
+\begin{document}
+\begin{minipage}[t]{0.12\textwidth}
+\raggedright
+\includegraphics[height=1.0cm, keepaspectratio]{hkbu (1).png}  % 校徽缩小，顶端对齐
+\end{minipage}
+
+% ==================== 第一页 & 第二页：家教简历 ====================
+
+% ===== 头部 =====
+\begin{center}
+    {\Huge \bfseries \textcolor{mainblue}{家教简历}} \\[6pt]
+    {\large \textcolor{mainblue!80}{张子墨}} \\[4pt]
+    \textcolor{darktext}{\faMapMarker* \ 合肥六中\quad | \quad 
+    \faGraduationCap \ 北师香港浸会大学（计算机科学与技术）\quad | \quad 
+    \faUser \ 大一} \\[2pt]
+   
+\end{center}
+\vspace{-6pt}
+
+% ===== 核心数据 =====
+\noindent\textcolor{mainblue}{\rule{\textwidth}{1.2pt}}
+\vspace{6pt}
+\begin{center}
+    \begin{minipage}{0.28\textwidth}
+        \centering
+        \textcolor{mainblue}{\Huge \textbf{584}}\\[2pt]
+        \small 高考总分 \\ 合肥六中实验班毕业（次重）
+    \end{minipage}
+    \begin{minipage}{0.05\textwidth}
+        \centering
+        \textcolor{accentgold}{\Huge \textbf{|}}
+    \end{minipage}
+    \begin{minipage}{0.28\textwidth}
+        \centering
+        \textcolor{mainblue}{\Huge \textbf{688}}\\[2pt]
+        \small 中考数学140语文128政治78/80历史69/70英语114\\ 自主招生录取(满分750)
+    \end{minipage}
+    \begin{minipage}{0.05\textwidth}
+        \centering
+        \textcolor{accentgold}{\Huge \textbf{|}}
+    \end{minipage}
+    \begin{minipage}{0.28\textwidth}
+        \centering
+        \textcolor{mainblue}{\Huge \textbf{20年}}\\[2pt]
+        \small 父母教龄·教师家庭 \\ 
+    \end{minipage}
+\end{center}
+\vspace{2pt}
+\noindent\textcolor{mainblue}{\rule{\textwidth}{1.2pt}}
+\vspace{-4pt}
+
+% ===== 教育背景 =====
+\section{\faUniversity \quad 教育背景}
+\textbf{北师香港浸会大学（香港浸会大学珠海校区）} \hfill 2025.09 -- 至今\\
+\textit{计算机科学与技术 \ | \ 本科一年级}\\
+\textcolor{darktext}{全英文教学环境，严谨治学，数理基础扎实，学业优异受邀进入本系教授的科研组（教授为前南开大学教授）,课题组研究方向为扩散模型优化}
+
+\vspace{2pt}
+\textbf{合肥六中} \hfill 2022.09 -- 2025.06\\
+\textit{理科实验班，中考通过自主招生提前录取}\\
+\textcolor{darktext}{高三数学常年稳定 130+，高中语文 124+。高考总分584，因地理化学科目发挥受限，数学语文单科优势突出。}
+
+% ===== 教培实践 =====
+\section{\faChalkboardTeacher \quad 教培实践}
+\begin{itemize}[leftmargin=1.2em]
+    \item \textbf{三孝口某教培机构 \ | \ 数学助教 \& 一对一辅导} \hfill 2025.06 -- 2025.07\\
+    面向 \textbf{合肥六中}（中考分数 688/750），独立承担备课、授课、作业批改与学情反馈。
+    \begin{itemize}
+        \item 针对薄弱知识点设计专题训练，单次辅导后同类题型正确率提升 \textbf{25\%--40\%}。
+        \item 协助主讲教师完成小班教学，批改作业 \textbf{200+} 份，整理错题档案并跟踪订正。
+    \end{itemize}
+
+    \item \textbf{初二基础薄弱生 \ | \ 语文·数学·物理·英语 补基辅导} \hfill 珠海\\
+    受教培机构推荐，独立上门家教辅导高中学生，主攻基础概念重建与解题逻辑。
+    \begin{itemize}
+        \item 数学科：从课本定义出发，30天内完成高中数学主干知识体系梳理，月考成绩平均提升 \textbf{15--20分}。
+        \item 物理/英语：同步查漏补缺，纠正学习习惯，建立错题本与定期复盘机制。
+    \end{itemize}
+     \item \textbf{初一语文基础薄弱生 \ | \ 语文阅读作文辅导} \hfill 珠海\\
+    受熟人推荐，上门家教辅导初一学生，主攻阅读方法与作文架构，如何稳定得分
+    
+    \item \textbf{实证材料}：课后批改作业照片、签到表、教室照片、家长反馈截图，均可现场出示。
+\end{itemize}
+
+% ===== 教学逻辑 =====
+\section{\faBrain \quad 教学逻辑与个人特质}
+\begin{itemize}
+    \item \textbf{教师家庭}：父母均为20年教龄在职教师，自幼接受严谨治学熏陶，具备天然耐心与洞察力，能快速定位学生知识断层。
+    \item \textbf{数学学科理解}：不主张死记硬背，强调“概念溯源→题型建模→变式迁移”。擅长用易懂语言拆解抽象定义，帮助同学从畏惧数学到稳定得分。
+    \item \textbf{沟通引导力}：善于与初高中年龄段孩子建立信任，通过结构化提问引导其自主思考，将短期家教转化为长效学习能力——“以较短的辅导时间，撬动长期自我成长”。
+    \item \textbf{极致负责}：每次辅导必有课后反馈记录，每次作业必有点评，每次阶段必有反馈。用教培机构的流程标准对待每一位学生。
+    \item \textbf{大学全英文教学}：英语经验丰富
+\end{itemize}
+
+% ===== 附加优势 =====
+\section{\faStar \quad 附加优势}
+\begin{itemize}
+    \item 高考后在多家教培机构轮岗实习，熟悉不同教学体系与家长诉求。
+    \item 初三阶段有逆袭经验,中考前提分70
+    \item 合肥六中毕业，可适应学情
+\end{itemize}
+
+\vspace{6pt}
+\begin{center}
+    \textcolor{mainblue!70}{\rule{0.7\textwidth}{0.6pt}}\\[4pt]
+    \textcolor{darktext}{\small 预约试讲·过往案例有记录}
+\end{center}
+\end{document}

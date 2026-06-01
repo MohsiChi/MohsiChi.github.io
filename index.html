@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>張墨汐 · Mohsi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Source+Sans+3:wght@300;400;500;600&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CSS RESET & BASE
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Source Sans 3', 'Noto Serif SC', serif;
+  background: #faf8f5;
+  color: #1e1e24;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background 0.6s ease;
+}
+
+/* ============================================================
+   ACADEMIC WORLD
+   ============================================================ */
+#world-academic {
+  display: flex;
+  min-height: 100vh;
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+/* body.in-anime #world-academic — 暂时注释，二次元界面装修中
+body.in-anime #world-academic {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+} */
+
+/* --- Sidebar --- */
+.ac-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e8e4dc;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 10;
+}
+.sidebar-nav {
+  margin-top: 0.5rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.sidebar-nav button {
+  display: block; width: 100%; text-align: left;
+  background: none; border: none; cursor: pointer;
+  padding: 0.55rem 0.8rem; border-radius: 6px;
+  font-family: 'Source Sans 3', 'Noto Serif SC', sans-serif;
+  font-size: 0.9rem; font-weight: 500;
+  color: #6e6d6a;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+.sidebar-nav button:hover { color: #1e1e24; background: #f5f3ef; }
+.sidebar-nav button.active {
+  color: #b8944d;
+  background: #faf7f0;
+  font-weight: 600;
+}
+
+/* --- Main Content Area --- */
+.ac-main {
+  margin-left: 260px;
+  flex: 1;
+  padding: 3rem 3.5rem;
+  max-width: 820px;
+}
+.ac-page { display: none; animation: fadeIn 0.4s ease; }
+.ac-page.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+  25% { transform: translateY(-30px) translateX(8px) scale(1.3); opacity: 0.7; }
+  50% { transform: translateY(-15px) translateX(-5px) scale(1); opacity: 0.4; }
+  75% { transform: translateY(-40px) translateX(3px) scale(1.4); opacity: 0.8; }
+}
+
+/* Typography */
+.ac-page h1 {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 2.4rem; font-weight: 700; color: #0d0d16;
+  letter-spacing: -0.02em; margin-bottom: 0.3rem;
+}
+.ac-page h2 {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1.4rem; font-weight: 700; color: #0d0d16;
+  margin-bottom: 1.2rem; letter-spacing: -0.01em;
+}
+.ac-page h3 {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1.05rem; font-weight: 600; color: #1e1e24;
+  margin-bottom: 0.2rem;
+}
+.ac-page p { color: #4a4945; font-size: 0.95rem; margin-bottom: 0.6rem; }
+
+/* Gold rule divider */
+.gold-rule {
+  width: 48px; height: 2px;
+  background: #c9b882;
+  margin: 1.8rem 0;
+  border: none;
+}
+.gold-rule.full { width: 100%; height: 1px; background: #e5e0d8; margin: 1.5rem 0; }
+
+/* Section heading with gold accent */
+.section-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.section-head .rule-line {
+  flex: 1; height: 1px; background: #e5e0d8;
+}
+.section-head h2 {
+  margin-bottom: 0; white-space: nowrap;
+  font-size: 1.15rem; font-weight: 600;
+  color: #b8944d; letter-spacing: 0.06em; text-transform: uppercase;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+/* --- Home Page --- */
+.home-hero {
+  display: flex; gap: 2rem; align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.home-photo {
+  width: 110px; height: 110px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 3px solid #e8e4dc;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.home-title-block { flex: 1; }
+.home-title-block h1 { margin-bottom: 0.1rem; }
+.home-subtitle {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1rem; font-style: italic; color: #8a8780;
+  margin-bottom: 0.8rem;
+}
+.home-bio { font-size: 0.95rem; color: #4a4945; line-height: 1.75; max-width: 560px; }
+
+/* Quick Stats */
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; margin: 1.5rem 0;
+}
+.stat-box {
+  background: #ffffff; border: 1px solid #e8e4dc;
+  border-radius: 8px; padding: 1rem 0.8rem; text-align: center;
+  transition: all 0.2s ease;
+}
+.stat-box:hover { border-color: #c9b882; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.stat-box .stat-icon { font-size: 1.3rem; margin-bottom: 0.3rem; }
+.stat-box .stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700; color: #0d0d16;
+}
+.stat-box .stat-label { font-size: 0.75rem; color: #8a8780; margin-top: 1px; }
+
+/* News Panel */
+.news-panel {
+  background: #ffffff; border: 1px solid #e5e0d8;
+  border-radius: 10px; padding: 1.5rem 1.8rem;
+}
+.news-item {
+  display: flex; gap: 1rem; align-items: baseline;
+  padding: 0.6rem 0;
+}
+.news-date {
+  font-size: 0.8rem; color: #b5b2aa; font-weight: 500;
+  white-space: nowrap; min-width: 70px;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.news-text {
+  font-size: 0.9rem; color: #b5b2aa;
+  font-style: italic;
+}
+
+/* --- CV Page --- */
+.timeline-item {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+  border-left: 1px solid #e5e0d8;
+  transition: border-color 0.3s;
+}
+.timeline-item:hover { border-left-color: #c9b882; }
+.timeline-date {
+  font-size: 0.8rem; font-weight: 600; color: #b8944d;
+  margin-bottom: 0.2rem; letter-spacing: 0.02em;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.skill-category { margin-bottom: 1rem; }
+.skill-category h4 {
+  font-size: 0.85rem; font-weight: 600; color: #6e6d6a;
+  margin-bottom: 0.5rem; letter-spacing: 0.02em;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.skill-tag {
+  background: #f5f3ef; color: #4a4945;
+  padding: 0.25rem 0.7rem; border-radius: 4px;
+  font-size: 0.82rem; border: 1px solid #e8e4dc;
+  transition: all 0.2s ease;
+}
+.skill-tag:hover { background: #faf7f0; border-color: #c9b882; color: #1e1e24; }
+.strength-list { list-style: none; }
+.strength-list li {
+  padding: 0.5rem 0 0.5rem 1.2rem;
+  font-size: 0.9rem; color: #4a4945;
+  position: relative;
+  border-bottom: 1px solid #f5f3ef;
+}
+.strength-list li:last-child { border-bottom: none; }
+.strength-list li::before {
+  content: ''; position: absolute; left: 0; top: 1rem;
+  width: 5px; height: 5px; background: #c9b882; border-radius: 50%;
+}
+
+/* --- Projects Page --- */
+.project-card {
+  background: #ffffff; border: 1px solid #e5e0d8;
+  border-radius: 10px; padding: 1.5rem 1.8rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s ease;
+}
+.project-card:hover { border-color: #c9b882; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+.project-card:last-child { margin-bottom: 0; }
+.project-meta {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  font-size: 0.82rem; color: #b8944d; font-weight: 500;
+  margin-bottom: 0.5rem; letter-spacing: 0.02em;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.project-desc { font-size: 0.9rem; color: #6e6d6a; margin-bottom: 0.6rem; }
+.project-list { list-style: none; }
+.project-list li {
+  padding: 0.25rem 0 0.25rem 0.8rem;
+  font-size: 0.88rem; color: #4a4945;
+  position: relative;
+}
+.project-list li::before {
+  content: ''; position: absolute; left: 0; top: 0.7rem;
+  width: 4px; height: 4px; background: #c9b882; border-radius: 50%;
+}
+.project-card .skill-tags { margin-top: 0.8rem; }
+
+/* --- Contact Page --- */
+.contact-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+}
+.contact-card {
+  background: #ffffff; border: 1px solid #e5e0d8;
+  border-radius: 10px; padding: 1.5rem;
+  text-align: center; transition: all 0.2s ease;
+}
+.contact-card:hover { border-color: #c9b882; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+.contact-card .contact-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.contact-card .contact-label { font-size: 0.78rem; color: #8a8780; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; }
+.contact-card .contact-value { font-size: 0.95rem; font-weight: 600; color: #0d0d16; margin-top: 0.2rem; word-break: break-all; }
+
+/* ============================================================
+   ANIME WORLD — 暂时注释，二次元界面装修中
+   ============================================================ */
+/*
+#world-anime {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 5;
+  overflow-y: auto;
+}
+body.in-anime #world-anime {
+  opacity: 1; pointer-events: auto;
+}
+
+.anime-bg {
+  position: fixed; inset: 0;
+  background: linear-gradient(160deg, #120724 0%, #1a0e35 35%, #1e1240 60%, #150c2e 100%);
+  z-index: -1;
+}
+.anime-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(180,130,200,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(200,150,180,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, rgba(220,180,220,0.04) 0%, transparent 60%);
+}
+.anime-particles { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
+
+.anime-content {
+  padding: 2rem 1.5rem 4rem;
+  width: 100%; max-width: 680px;
+  z-index: 1;
+}
+
+.glass-card {
+  background: rgba(255, 250, 255, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  border: 1px solid rgba(220, 190, 230, 0.18);
+  padding: 2.2rem 2rem;
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.3),
+    0 0 0 1px rgba(200,170,220,0.08) inset,
+    0 0 80px rgba(180,140,210,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+}
+.glass-card::after {
+  content: ''; position: absolute; top: 24px; right: 24px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(200,150,220,0.08) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+
+.glass-card .anime-name-row {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px;
+  margin-bottom: 0.6rem;
+}
+.glass-card .anime-name {
+  font-family: 'M PLUS Rounded 1c', 'Zen Kaku Gothic New', sans-serif;
+  font-size: 2rem; font-weight: 700;
+  color: #f0e0f8;
+  letter-spacing: -0.01em;
+}
+.glass-card .anime-sub {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1rem; font-weight: 400;
+  color: #c0a8c8;
+}
+.glass-card .anime-wave { font-size: 1.6rem; }
+
+.anime-badges {
+  display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 2px;
+}
+.anime-badge {
+  background: rgba(200,170,210,0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 5px 14px; border-radius: 40px;
+  font-size: 0.82rem; font-weight: 500;
+  color: #d8c8e0; border: 1px solid rgba(190,150,200,0.2);
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+}
+.anime-badge.ip { background: rgba(180,140,200,0.25); }
+.badge-img { width: 17px; height: 17px; object-fit: contain; border-radius: 3px; }
+
+.anime-divider {
+  margin: 1.5rem 0 1.3rem; height: 1px; border: 0;
+  background: linear-gradient(90deg, transparent, rgba(200,160,210,0.35), rgba(210,180,220,0.35), rgba(200,160,210,0.35), transparent);
+}
+
+.anime-section-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 600; font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.6rem;
+  color: #d4b8e0;
+  display: flex; align-items: center; gap: 8px;
+  border-left: 3px solid #b890c8;
+  padding-left: 12px;
+}
+
+.anime-tag-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+  margin-bottom: 0.15rem;
+}
+.anime-tag {
+  background: rgba(255,240,255,0.1);
+  padding: 0.25rem 0.8rem; border-radius: 30px;
+  font-size: 0.9rem; color: #d8c8e0;
+  border: 1px solid rgba(210,180,220,0.2);
+  transition: all 0.2s ease; line-height: 1.5;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.anime-tag:hover {
+  background: rgba(255,240,255,0.16);
+  border-color: rgba(210,180,220,0.35);
+  transform: translateY(-1px);
+}
+.anime-tag strong { font-weight: 600; color: #e0c8e8; }
+
+.rpg-section { margin-top: 0.6rem; }
+.rpg-stat-row {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 0.65rem;
+}
+.rpg-icon { font-size: 1rem; width: 26px; text-align: center; flex-shrink: 0; }
+.rpg-label {
+  width: 62px; font-size: 0.85rem; font-weight: 600;
+  color: #d0bcd8; text-align: right; flex-shrink: 0;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.rpg-bar-track {
+  flex: 1; height: 16px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(200,160,210,0.15);
+  position: relative;
+}
+.rpg-bar-fill {
+  height: 100%; border-radius: 8px;
+  transition: width 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  position: relative;
+}
+.rpg-bar-fill::after {
+  content: ''; position: absolute; top: 3px; left: 8px; right: 8px; height: 3px;
+  background: rgba(255,255,255,0.2); border-radius: 2px;
+}
+.rpg-val {
+  width: 36px; font-size: 0.82rem; font-weight: 700;
+  color: #e0cce8; text-align: left; flex-shrink: 0;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.fill-code { background: linear-gradient(90deg, #7b5ea7, #a078c8); box-shadow: 0 0 10px rgba(140,100,200,0.3); }
+.fill-learn { background: linear-gradient(90deg, #5e8f7b, #78b898); box-shadow: 0 0 10px rgba(100,160,130,0.3); }
+.fill-create { background: linear-gradient(90deg, #8b6b8b, #b890b8); box-shadow: 0 0 10px rgba(160,120,180,0.3); }
+.fill-social { background: linear-gradient(90deg, #b87070, #d49090); box-shadow: 0 0 10px rgba(190,120,130,0.3); }
+.fill-spirit { background: linear-gradient(90deg, #6b8b9b, #8bb0c0); box-shadow: 0 0 10px rgba(120,160,180,0.3); }
+.fill-luck { background: linear-gradient(90deg, #b89b50, #d4b868); box-shadow: 0 0 10px rgba(190,160,90,0.3); }
+
+.anime-note-list { list-style: none; margin-top: 0.2rem; }
+.anime-note-list li {
+  margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.9rem; color: #c8b8d0; line-height: 1.5;
+}
+.anime-dot { display: inline-block; width: 18px; text-align: center; color: #b890c8; font-weight: 500; }
+.anime-apology {
+  background: rgba(200,160,200,0.1);
+  padding: 0.85rem 1.2rem; border-radius: 20px;
+  margin: 1rem 0 1.3rem; font-size: 0.9rem;
+  color: #c0a8c8; border-left: 3px solid #b890c8;
+}
+.anime-ng {
+  background: rgba(230,100,100,0.08);
+  border-radius: 20px; padding: 1.1rem 1.4rem;
+  margin: 0.7rem 0 1rem;
+  border: 1px solid rgba(210,130,140,0.18);
+}
+.anime-ng-title {
+  font-weight: 700; color: #d89098; letter-spacing: 0.04em;
+  margin-bottom: 0.7rem; font-size: 1rem;
+  display: flex; align-items: center; gap: 6px;
+}
+.anime-ng-item { display: flex; margin-bottom: 0.5rem; font-size: 0.9rem; color: #c0a8b0; }
+.anime-ng-marker { color: #d89098; margin-right: 10px; font-weight: 600; }
+.anime-ng-footnote {
+  margin-top: 0.7rem; padding-top: 0.5rem;
+  font-size: 0.85rem; color: #b098a0;
+  border-top: 1px dashed rgba(200,150,160,0.25);
+  font-style: italic;
+}
+.anime-footer-row {
+  margin-top: 1.5rem; text-align: right; font-size: 0.95rem;
+  color: #b898c0; border-top: 1px dashed rgba(190,160,200,0.2);
+  padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;
+}
+*/
+
+/* ============================================================
+   POPUP MODAL — 二次元界面装修中提示
+   ============================================================ */
+.popup-overlay {
+  position: fixed; inset: 0;
+  background: rgba(20, 10, 30, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.popup-overlay.show {
+  opacity: 1; pointer-events: auto;
+}
+.popup-card {
+  background: linear-gradient(135deg, #fffaf7 0%, #f9f0f8 100%);
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  display: flex; align-items: center; gap: 1.8rem;
+  box-shadow: 0 20px 60px rgba(30,10,40,0.28), 0 0 0 1px rgba(200,170,220,0.2) inset;
+  max-width: 520px;
+  position: relative;
+  border: 2px solid #e0c8e8;
+  transform: translateY(0);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.popup-overlay.show .popup-card {
+  transform: translateY(0);
+}
+.popup-overlay:not(.show) .popup-card {
+  transform: translateY(-20px);
+}
+.popup-msg {
+  font-family: 'M PLUS Rounded 1c', 'Zen Kaku Gothic New', 'Noto Serif SC', sans-serif;
+  font-size: 1.15rem; font-weight: 600;
+  color: #5e3a5e;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+.popup-img {
+  width: 90px; height: 90px;
+  object-fit: contain;
+  border-radius: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(180,140,200,0.25);
+}
+.popup-close {
+  position: absolute; top: 10px; right: 16px;
+  background: none; border: none;
+  font-size: 1.4rem; cursor: pointer;
+  color: #c0a8c0; line-height: 1;
+  transition: color 0.2s, transform 0.2s;
+  padding: 4px 8px;
+}
+.popup-close:hover { color: #5e3a5e; transform: scale(1.15); }
+
+/* ============================================================
+   WORLD TOGGLE
+   ============================================================ */
+.world-toggle-wrap {
+  position: fixed; top: 1.5rem; right: 1.5rem;
+  display: flex; align-items: center; gap: 10px;
+  z-index: 100;
+}
+.toggle-switch {
+  width: 48px; height: 26px;
+  border-radius: 13px;
+  background: #d4cfc5;
+  border: none; cursor: pointer;
+  position: relative;
+  transition: all 0.4s ease;
+  flex-shrink: 0;
+}
+.toggle-switch::after {
+  content: ''; position: absolute;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #ffffff; top: 3px; left: 3px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+body.in-anime .toggle-switch {
+  background: #5e3a7a;
+  box-shadow: 0 0 16px rgba(140,100,200,0.3);
+}
+body.in-anime .toggle-switch::after {
+  transform: translateX(22px);
+  box-shadow: 0 1px 6px rgba(180,140,220,0.4);
+}
+.toggle-switch:hover { opacity: 0.9; }
+
+/* Language toggle */
+.lang-toggle {
+  width: 36px; height: 26px;
+  border-radius: 13px;
+  background: #e8e4dc;
+  border: 1px solid #d4cfc5;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  color: #6e6d6a;
+  letter-spacing: 0.03em;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  text-align: center; line-height: 24px;
+}
+.lang-toggle:hover { background: #ddd8ce; color: #1e1e24; }
+body.in-anime .lang-toggle {
+  background: rgba(200,170,210,0.18);
+  border-color: rgba(190,150,200,0.25);
+  color: #c0a8c8;
+}
+body.in-anime .lang-toggle:hover {
+  background: rgba(200,170,210,0.3);
+  color: #e0d0e8;
+}
+
+/* The main hint text */
+.toggle-hint {
+  font-size: 0.78rem; color: #c5beb5;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition: color 0.4s ease;
+  font-family: 'Noto Serif SC', serif;
+}
+body.in-anime .toggle-hint {
+  color: rgba(200,170,210,0.7);
+}
+
+/* Blog link in toggle bar */
+.blog-link {
+  width: 36px; height: 26px;
+  border-radius: 13px;
+  background: #e8e4dc;
+  border: 1px solid #d4cfc5;
+  cursor: pointer;
+  font-family: 'Source Sans 3', 'Noto Serif SC', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  color: #6e6d6a;
+  letter-spacing: 0.03em;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  text-align: center; line-height: 24px;
+  text-decoration: none;
+  display: inline-block;
+}
+.blog-link:hover { background: #ddd8ce; color: #1e1e24; }
+body.in-anime .blog-link {
+  background: rgba(200,170,210,0.18);
+  border-color: rgba(190,150,200,0.25);
+  color: #c0a8c8;
+}
+body.in-anime .blog-link:hover {
+  background: rgba(200,170,210,0.3);
+  color: #e0d0e8;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .ac-sidebar {
+    width: 220px; padding: 1.8rem 1.3rem;
+  }
+  .ac-main { margin-left: 220px; padding: 2rem 2rem; }
+  .home-hero { flex-direction: column; align-items: center; text-align: center; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .ac-sidebar {
+    position: relative; width: 100%; min-height: auto;
+    flex-direction: row; flex-wrap: wrap; align-items: center;
+    padding: 1rem 1.2rem; gap: 1rem;
+    border-right: none; border-bottom: 1px solid #e5e0d8;
+  }
+  .sidebar-nav { flex-direction: row; margin-top: 0; gap: 0; flex-wrap: wrap; }
+  .ac-main { margin-left: 0; padding: 1.5rem 1.2rem; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .home-hero { flex-direction: column; align-items: center; text-align: center; }
+  .glass-card { padding: 1.5rem 1.2rem; border-radius: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ACADEMIC WORLD
+     ============================================================ -->
+<div id="world-academic">
+  <aside class="ac-sidebar">
+    <ul class="sidebar-nav">
+      <li><button data-page="home" class="active" onclick="switchAcademicPage('home')">Home</button></li>
+      <li><button data-page="cv" onclick="switchAcademicPage('cv')">CV</button></li>
+      <li><button data-page="projects" onclick="switchAcademicPage('projects')">Projects</button></li>
+      <li><button data-page="contact" onclick="switchAcademicPage('contact')">Contact</button></li>
+    </ul>
+  </aside>
+
+  <main class="ac-main">
+    <!-- HOME -->
+    <div class="ac-page active" id="ac-home">
+      <div class="home-hero">
+        <img class="home-photo" src="生活照片.jpg" alt="張墨汐" onerror="this.style.display='none'">
+        <div class="home-title-block">
+          <h1>張墨汐</h1>
+          <div class="home-subtitle" data-i18n="home-subtitle">Mohsi · 計算機科學與技術 · 香港浸會大學</div>
+          <p class="home-bio">
+           <span data-i18n="home-bio-l1">Bonjour👋🏻cn Mohsi（汐子）正在學習一些Computer Science</span><br>
+           <span data-i18n="home-bio-l2">--個人網頁還比較潦草</span>
+          </p>
+        </div>
+      </div>
+      <div class="section-head">
+        <span class="rule-line"></span>
+        <h2>News & Updates</h2>
+        <span class="rule-line"></span>
+      </div>
+      <div class="news-panel">
+        <div class="news-item">
+          <span class="news-date">2026.05</span>
+          <span class="news-text" data-i18n="news-text">摸魚中…</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CV -->
+    <div class="ac-page" id="ac-cv">
+      <h2 data-i18n="cv-edu-title">教育背景</h2>
+      <div class="timeline-item">
+        <div class="timeline-date">2025.09 — <span data-i18n="date-present">至今</span></div>
+        <h3>香港浸會大學</h3>
+        <p data-i18n="cv-edu-desc">計算機科學與技術 · 本科一年級 · 全英文上課好難啊...</p>
+        <p style="font-size:0.85rem; color:#6e6d6a;"><span data-i18n="cv-edu-courses-label">核心課程：</span><span data-i18n="cv-edu-courses">面向對象編程(Java) | C語言 | 離散數學 | 線性代數 | 微積分工程 | Web與系統(HTML/CSS/JS/SQL/Linux)</span></p>
+      </div>
+      <hr class="gold-rule full">
+      <h2 data-i18n="cv-skills-title">專業技能</h2>
+      <div class="skill-category">
+        <h4 data-i18n="cv-skills-core">暫時沒什麼用的技能</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Java · OOP/集合/異常</span>
+          <span class="skill-tag">SQL · 多表聯查/子查詢</span>
+          <span class="skill-tag">HTML + CSS + JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h4 data-i18n="cv-skills-tools">自學的一些基礎工具</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Shell / Linux / Vim</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag" data-i18n="skill-ir">信息檢索</span>
+          <span class="skill-tag">LaTeX</span>
+        </div>
+      </div>
+      <hr class="gold-rule full">
+      <h2 data-i18n="cv-strengths-title">我可以:</h2>
+      <ul class="strength-list">
+        <li data-i18n-html="cv-strength-1"><strong>完整工作週期</strong> — 暑假3個月全職實習，大灣區/合肥本地，出勤穩定</li>
+        <li data-i18n-html="cv-strength-2"><strong>科研級自學能力</strong> — 大一主動聯繫教授進入科研組，課外系統性自學Docker、Shell、Git等工程工具鏈</li>
+        <li data-i18n-html="cv-strength-3"><strong>文檔與工程習慣</strong> — 全英文教學環境，代碼提交github，學習過程LaTeX記錄習慣</li>
+        <li data-i18n-html="cv-strength-4"><strong>AI agent工具應用</strong> — 將AI輔助開發融入實踐，了解prompt engineering，使用skills優化工作流</li>
+      </ul>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="ac-page" id="ac-projects">
+      <h2 data-i18n="proj-title">項目與科研經歷</h2>
+      <div class="project-card">
+        <h3 data-i18n="proj-sd-title">Stable Diffusion 模型改進研究</h3>
+        <div class="project-meta">
+          <span data-i18n="proj-sd-meta">計算機系教授課題組</span>
+          <span>2025.12 — <span data-i18n="date-present">至今</span></span>
+        </div>
+        <p class="project-desc" data-i18n="proj-sd-desc">導師為前南開大學計算機系教授，課題組研究方向為擴散模型優化。</p>
+        <ul class="project-list">
+          <li data-i18n="proj-sd-b1">獨立完成 FreeU（推理階段特徵調控）與 ConsistStyle（風格一致性增強）兩篇論文的方法復現，基於 PyTorch 搭建實驗環境</li>
+          <li data-i18n="proj-sd-b2">設計消融實驗，評估兩種方法對生成質量的影響，輸出實驗報告與數據記錄</li>
+          <li data-i18n="proj-sd-b3">嘗試融合兩種方法的優勢，在保持生成速度的同時提升風格一致性</li>
+        </ul>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">Stable Diffusion</span>
+          <span class="skill-tag">LaTeX</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3 data-i18n="proj-aq-title">Adventure Quest — Java Swing RPG 遊戲</h3>
+        <div class="project-meta">
+          <span data-i18n="proj-aq-meta">OOP課程期末項目 · BNBU</span>
+          <span>2026 Spring</span>
+        </div>
+        <p class="project-desc" data-i18n="proj-aq-desc">基於 Java Swing 的圖形化角色扮演遊戲，面向對象程序設計課程期末作品。</p>
+        <ul class="project-list">
+          <li data-i18n="proj-aq-b1">角色創建系統：戰士/法師/弓箭手三種職業，各具獨特屬性與技能</li>
+          <li data-i18n="proj-aq-b2">回合制戰鬥系統（攻擊/防禦/技能），含敵方AI決策邏輯</li>
+          <li data-i18n="proj-aq-b3">任務系統、商店經濟、背包裝備管理 — 完整遊戲循環</li>
+          <li data-i18n="proj-aq-b4">遊戲存檔/讀檔（文件I/O持久化）與等級成長系統</li>
+          <li data-i18n="proj-aq-b5">運用抽象類、接口、繼承、自定義異常等OOP核心設計模式</li>
+        </ul>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Java Swing</span>
+          <span class="skill-tag">文件I/O</span>
+          <span class="skill-tag" data-i18n="skill-oop">OOP設計模式</span>
+        </div>
+        <div style="margin-top:0.6rem; font-size:0.82rem;">
+          <a href="https://github.com/MohsiChi/adventure-quest" target="_blank" style="color:#b8944d; text-decoration:none; border-bottom:1px dotted #c9b882;">View on GitHub &#8599;</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3 data-i18n="proj-web-title">Web 開發課程項目</h3>
+        <div class="project-meta">
+          <span data-i18n="proj-web-meta">香港浸會大學</span>
+          <span>2026.02 — 2026.06</span>
+        </div>
+        <p class="project-desc" data-i18n="proj-web-desc">全棧Web應用開發課程，使用 HTML/CSS/JS/SQL 完成完整網站搭建。</p>
+        <ul class="project-list">
+          <li data-i18n="proj-web-b1">獨立完成前端頁面設計與實現（HTML/CSS 佈局、JavaScript 交互邏輯）</li>
+          <li data-i18n="proj-web-b2">設計數據庫表結構，編寫 SQL 查詢實現數據的增刪改查與分頁展示</li>
+        </ul>
+        <div class="skill-tags">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="ac-page" id="ac-contact">
+      <h2 data-i18n="contact-title">聯繫方式</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">&#9993;</div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">moxizhang10@gmail.com</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">&#128222;</div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">15989755265</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">&#128205;</div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value" data-i18n="contact-location">安徽合肥 / 大灣區</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">&#127891;</div>
+          <div class="contact-label">University</div>
+          <div class="contact-value" data-i18n="contact-uni">香港浸會大學</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ============================================================
+     ANIME WORLD — 暂时注释，二次元界面装修中
+     ============================================================ -->
+<!--
+<div id="world-anime">
+  <div class="anime-bg"></div>
+  <div class="anime-particles" id="particles"></div>
+
+  <div class="anime-content">
+    <div class="glass-card">
+      <div class="anime-name-row">
+        <span class="anime-wave">&#128075;&#127995;&#128075;&#127995;</span>
+        <span class="anime-name">Mohsi</span>
+        <span class="anime-sub">（汐子）です</span>
+      </div>
+
+      <div class="anime-badges">
+        <span class="anime-badge ip">&#127758; ip=港皖粵</span>
+        <span class="anime-badge"><img class="badge-img" src="绿老头.png" alt=""> INFJ</span>
+        <span class="anime-badge"><img class="badge-img" src="BNBU校徽.png" alt=""> 07大學生</span>
+      </div>
+
+      <hr class="anime-divider">
+
+      <div class="anime-section-title">&#10024; 推し</div>
+      <div class="anime-tag-row">
+        <span class="anime-tag">耿鬼 <img class="badge-img" src="耿鬼.png" alt=""></span>
+        <span class="anime-tag">科莫</span>
+        <span class="anime-tag">花子君</span>
+        <span class="anime-tag">霧雨魔理沙</span>
+        <span class="anime-tag">博麗靈夢全肯定qwq <img class="badge-img" src="可爱灵梦宝宝.png" alt="" style="width:22px;height:22px;"></span>
+      </div>
+
+      <div style="margin-top: 1.3rem;">
+        <div class="anime-section-title">&#127918; 主坑 · 但很包容雜食&#127807;</div>
+        <div class="anime-tag-row">
+          <span class="anime-tag">寶可夢 <img class="badge-img" src="大师球.png" alt=""></span>
+          <span class="anime-tag">東方</span>
+          <span class="anime-tag">黒塔</span>
+          <span class="anime-tag">音樂劇</span>
+          <span class="anime-tag">漢文化</span>
+          <span class="anime-tag">日法文學</span>
+          <span class="anime-tag">古典音樂</span>
+          <span class="anime-tag">想嘗試cos</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.1rem;">
+        <div class="anime-section-title">&#127769; 一些淡坑</div>
+        <div class="anime-tag-row">
+          <span class="anime-tag">燕雲</span>
+          <span class="anime-tag">塞爾達</span>
+          <span class="anime-tag">糊糊</span>
+          <span class="anime-tag">五</span>
+          <span class="anime-tag">光遇</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.1rem;">
+        <div class="anime-section-title">&#127932; 音樂</div>
+        <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+          <div class="anime-tag-row">
+            <span class="anime-tag"><strong>&#127929; 鋼琴、排簫嚴肅潛修中</strong></span>
+            <span class="anime-tag">音樂劇 · 法扎/德扎/紅與黑/中堂</span>
+            <span class="anime-tag">jpop</span>
+          </div>
+          <div class="anime-tag-row">
+            <span class="anime-tag">舒伯特</span>
+            <span class="anime-tag">粵語歌也喜歡…！</span>
+            <span class="anime-tag">什麼都可以聽一些 &#127926;</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rpg-section">
+        <hr class="anime-divider">
+        <div class="anime-section-title">&#9876; Character Stats</div>
+        <div class="rpg-stat-row">
+          <span class="rpg-icon">&#128187;</span>
+          <span class="rpg-label">編程力</span>
+          <div class="rpg-bar-track"><div class="rpg-bar-fill fill-code" data-width="72"></div></div>
+          <span class="rpg-val">72</span>
+        </div>
+        <div class="rpg-stat-row">
+          <span class="rpg-icon">&#128218;</span>
+          <span class="rpg-label">學習力</span>
+          <div class="rpg-bar-track"><div class="rpg-bar-fill fill-learn" data-width="90"></div></div>
+          <span class="rpg-val">90</span>
+        </div>
+        <div class="rpg-stat-row">
+          <span class="rpg-icon">&#127912;</span>
+          <span class="rpg-label">創造力</span>
+          <div class="rpg-bar-track"><div class="rpg-bar-fill fill-create" data-width="85"></div></div>
+          <span class="rpg-val">85</span>
+        </div>
+        <div class="rpg-stat-row">
+          <span class="rpg-icon">&#128172;</span>
+          <span class="rpg-label">社交力</span>
+          <div class="rpg-bar-track"><div class="rpg-bar-fill fill-social" data-width="60"></div></div>
+          <span class="rpg-val">60</span>
+        </div>
+        <div class="rpg-stat-row">
+          <span class="rpg-icon">&#10024;</span>
+          <span class="rpg-label">精神力</span>
+          <div class="rpg-bar-track"><div class="rpg-bar-fill fill-spirit" data-width="88"></div></div>
+          <span class="rpg-val">88</span>
+        </div>
+        <div class="rpg-stat-row">
+          <span class="rpg-icon">&#127808;</span>
+          <span class="rpg-label">幸運值</span>
+          <div class="rpg-bar-track"><div class="rpg-bar-fill fill-luck" data-width="77"></div></div>
+          <span class="rpg-val">77</span>
+        </div>
+      </div>
+
+      <hr class="anime-divider" style="margin: 1.6rem 0 1rem;">
+
+      <div class="anime-section-title">&#128172; 可能雷到你</div>
+      <ul class="anime-note-list">
+        <li><span class="anime-dot">·</span> 二三次不分號</li>
+        <li><span class="anime-dot">·</span> 偶爾會消失概率觸發忘回訊息</li>
+        <li><span class="anime-dot">·</span> 說話不太直接</li>
+      </ul>
+      <div class="anime-apology">
+        &#127807; 如果哪裡讓您感到不適非常抱歉！<br>
+        話題請及時告訴我 T T<br>
+        有時候真的很會反應不過來…
+      </div>
+
+      <div class="anime-ng">
+        <div class="anime-ng-title">
+          <span>&#128695; NG · 請勿觸及</span>
+          <span style="font-size:1.1rem; margin-left: auto;">&#9940;</span>
+        </div>
+        <div class="anime-ng-item"><span class="anime-ng-marker">·</span> 韃靼相關遊牧民族文化一切</div>
+        <div class="anime-ng-item"><span class="anime-ng-marker">·</span> 遇到男女拳或各種贏學會block</div>
+        <div class="anime-ng-item"><span class="anime-ng-marker">·</span> 葷笑話或者相關方向抖機靈會block</div>
+        <div class="anime-ng-item"><span class="anime-ng-marker">·</span> mhy相關 | xz相關 | 時團相關</div>
+        <div class="anime-ng-footnote">※ 除了xz都可以溺愛，只要別蹬臉</div>
+      </div>
+
+      <div class="anime-footer-row">
+        <span>&#129531; 當然人品大於一切</span>
+        <span style="font-size:1.1rem; letter-spacing:2px;">&#10029; &#10029;</span>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<!-- ============================================================
+     POPUP MODAL — 二次元界面装修中提示
+     ============================================================ -->
+<div class="popup-overlay" id="popupOverlay" onclick="if(event.target===this)closePopup()">
+  <div class="popup-card">
+    <button class="popup-close" onclick="closePopup()">&times;</button>
+    <span class="popup-msg">屬性條還在裝修…( ?</span>
+    <img class="popup-img" src="可爱灵梦宝宝.png" alt="可爱灵梦宝宝">
+  </div>
+</div>
+
+<!-- ============================================================
+     WORLD TOGGLE
+     ============================================================ -->
+<div class="world-toggle-wrap">
+  <a class="blog-link" href="https://mohsichi.github.io/blog" target="_blank" title="中文博客">博客</a>
+  <button class="lang-toggle" id="langBtn" onclick="toggleLang()" aria-label="切换语言">EN</button>
+  <button class="toggle-switch" id="toggleBtn" onclick="toggleWorld()" aria-label="切换世界"></button>
+  <span class="toggle-hint">幻想鄉在此異變…(？</span>
+</div>
+
+
+
+
+
+
+<script>
+// ========== Particles for Anime World (暂时禁用) ==========
+(function() {
+  const container = document.getElementById('particles');
+  if (!container) return; // 二次元界面装修中，跳过粒子初始化
+  const frag = document.createDocumentFragment();
+  const colors = ['#f0d0ff','#e8b8e0','#ffe0d0','#d8c8f0','#ffe8f0','#e0d0ff','#f8d8e8'];
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    const size = 1.5 + Math.random() * 3;
+    p.style.cssText = `
+      position: absolute; width: ${size}px; height: ${size}px;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      border-radius: 50%; left: ${Math.random()*100}%;
+      top: ${Math.random()*100}%;
+      opacity: ${0.3 + Math.random()*0.5};
+      animation: floatUp ${4+Math.random()*8}s ease-in-out infinite;
+      animation-delay: ${Math.random()*6}s;
+      box-shadow: 0 0 ${2+size}px ${colors[Math.floor(Math.random()*colors.length)]};
+      pointer-events: none;
+    `;
+    frag.appendChild(p);
+  }
+  container.appendChild(frag);
+})();
+
+// ========== i18n System (Full Traditional Chinese) ==========
+const i18n = {
+  'zh': {
+    'home-subtitle': 'Mohsi · 計算機科學 · 香港浸會大學',
+    'home-bio-l1': 'Bonjour👋🏻cn Mohsi（汐子）正在學習一些Computer Science',
+    'home-bio-l2': '--個人網頁還比較潦草',
+    'stat-1-label': '計算機科學與技術',
+    'stat-3-label': '2025.09',
+    'stat-4-label': '想找實習(?',
+    'stat-summer': '暑期',
+    'news-text': '摸魚中…',
+    'cv-edu-title': '教育背景',
+    'cv-edu-desc': '計算機科學與技術 · 本科一年級 · 全英文上課好難啊...',
+    'cv-edu-courses-label': '核心課程：',
+    'cv-edu-courses': '面向對象編程(Java) | C語言 | 離散數學 | 線性代數 | 微積分工程 | Web與系統(HTML/CSS/JS/SQL/Linux)',
+    'cv-skills-title': '專業技能',
+    'cv-skills-core': '暫時沒什麼用的技能',
+    'cv-skills-tools': '自學的一些基礎工具',
+    'cv-strengths-title': '我可以:',
+    'cv-strength-1': '<strong>完整工作週期</strong> — 暑假3個月全職實習，大灣區/合肥本地，出勤穩定',
+    'cv-strength-2': '<strong>科研級自學能力</strong> — 大一主動聯繫教授進入科研組，課外系統性自學Docker、Shell、Git等工程工具鏈',
+    'cv-strength-3': '<strong>文檔與工程習慣</strong> — 全英文教學環境，代碼提交github，學習過程LaTeX記錄習慣',
+    'cv-strength-4': '<strong>AI agent工具應用</strong> — 將AI輔助開發融入實踐，了解prompt engineering，使用skills優化工作流',
+    'proj-title': '項目與科研經歷',
+    'proj-sd-title': 'Stable Diffusion 模型改進研究',
+    'proj-sd-meta': '計算機系教授課題組',
+    'proj-sd-desc': '導師為前南開大學計算機系教授，課題組研究方向為擴散模型優化。',
+    'proj-sd-b1': '獨立完成 FreeU（推理階段特徵調控）與 ConsistStyle（風格一致性增強）兩篇論文的方法復現，基於 PyTorch 搭建實驗環境',
+    'proj-sd-b2': '設計消融實驗，評估兩種方法對生成質量的影響，輸出實驗報告與數據記錄',
+    'proj-sd-b3': '嘗試融合兩種方法的優勢，在保持生成速度的同時提升風格一致性',
+    'proj-aq-title': 'Adventure Quest — Java Swing RPG 遊戲',
+    'proj-aq-meta': 'OOP課程期末項目 · BNBU',
+    'proj-aq-desc': '基於 Java Swing 的圖形化角色扮演遊戲，面向對象程序設計課程期末作品。',
+    'proj-aq-b1': '角色創建系統：戰士/法師/弓箭手三種職業，各具獨特屬性與技能',
+    'proj-aq-b2': '回合制戰鬥系統（攻擊/防禦/技能），含敵方AI決策邏輯',
+    'proj-aq-b3': '任務系統、商店經濟、背包裝備管理 — 完整遊戲循環',
+    'proj-aq-b4': '遊戲存檔/讀檔（文件I/O持久化）與等級成長系統',
+    'proj-aq-b5': '運用抽象類、接口、繼承、自定義異常等OOP核心設計模式',
+    'proj-web-title': 'Web 開發課程項目',
+    'proj-web-meta': '香港浸會大學',
+    'proj-web-desc': '全棧Web應用開發課程，使用 HTML/CSS/JS/SQL 完成完整網站搭建。',
+    'proj-web-b1': '獨立完成前端頁面設計與實現（HTML/CSS 佈局、JavaScript 交互邏輯）',
+    'proj-web-b2': '設計數據庫表結構，編寫 SQL 查詢實現數據的增刪改查與分頁展示',
+    'contact-title': '聯繫方式',
+    'contact-location': '安徽合肥 / 大灣區',
+    'contact-uni': '香港浸會大學',
+    'date-present': '至今',
+    'skill-ir': '信息檢索',
+    'skill-oop': 'OOP設計模式'
+  },
+  'en': {
+    'home-subtitle': 'Mohsi · Computer Science · BNBU',
+    'home-bio-l1': "Bonjour👋🏻 Mohsi (Xizi) here — studying Computer Science",
+    'home-bio-l2': '-- this site is still a work in progress',
+    'stat-1-label': 'Computer Science',
+    'stat-3-label': '2025.09',
+    'stat-4-label': 'Seeking internship(?',
+    'stat-summer': 'Summer',
+    'news-text': 'Slacking off…',
+    'cv-edu-title': 'Education',
+    'cv-edu-desc': "Computer Science & Technology · Year 1 · English-medium lectures are kicking my ass...",
+    'cv-edu-courses-label': 'Core coursework: ',
+    'cv-edu-courses': 'OOP (Java) | C | Discrete Math | Linear Algebra | Calculus | Web & Systems (HTML/CSS/JS/SQL/Linux)',
+    'cv-skills-title': 'Technical Skills',
+    'cv-skills-core': "Skills I've barely put to use",
+    'cv-skills-tools': 'Self-taught tools & utilities',
+    'cv-strengths-title': 'What I bring:',
+    'cv-strength-1': '<strong>Full availability</strong> — 3 months of full-time summer internship, based in Hefei / Greater Bay Area, consistent attendance guaranteed',
+    'cv-strength-2': '<strong>Research-grade self-starter</strong> — joined a CS research group as a freshman; independently picked up Docker, Shell, Git, and the full engineering toolchain outside of class',
+    'cv-strength-3': '<strong>Clean engineering habits</strong> — English-medium academic environment, disciplined GitHub commits, LaTeX for study notes and experiment reports',
+    'cv-strength-4': '<strong>AI-native workflow</strong> — AI-assisted development integrated into daily practice; fluent in prompt engineering and skill-based workflow optimization',
+    'proj-title': 'Projects & Research',
+    'proj-sd-title': 'Stable Diffusion Model Optimization',
+    'proj-sd-meta': 'CS Department Research Group',
+    'proj-sd-desc': 'Supervised by a former Nankai University CS professor. Research focuses on diffusion model optimization.',
+    'proj-sd-b1': 'Independently reproduced two papers — FreeU (feature modulation during inference) and ConsistStyle (style consistency enhancement) — building experimental pipelines in PyTorch',
+    'proj-sd-b2': 'Designed ablation studies to evaluate each method\'s impact on generation quality; documented findings in experiment reports',
+    'proj-sd-b3': 'Exploring ways to combine the strengths of both approaches — improving style consistency while preserving inference speed',
+    'proj-aq-title': 'Adventure Quest — Java Swing RPG Game',
+    'proj-aq-meta': 'OOP Final Project · BNBU',
+    'proj-aq-desc': 'A GUI-based role-playing game built with Java Swing as the final project for the Object-Oriented Programming course.',
+    'proj-aq-b1': 'Character creation system with three classes — Warrior, Mage, Archer — each with unique stats and abilities',
+    'proj-aq-b2': 'Turn-based combat (attack / defend / class skills) with enemy AI decision logic',
+    'proj-aq-b3': 'Quest system, shop economy, and inventory management — a complete game loop',
+    'proj-aq-b4': 'Save/load via file I/O persistence, plus a character leveling system',
+    'proj-aq-b5': 'Demonstrates core OOP patterns: abstract classes, interfaces, inheritance, and custom exceptions',
+    'proj-web-title': 'Web Development Course Project',
+    'proj-web-meta': 'BNBU',
+    'proj-web-desc': 'Full-stack web application development course. Built a complete website with HTML, CSS, JavaScript, and SQL.',
+    'proj-web-b1': 'Independently designed and implemented the frontend — HTML/CSS layouts, JavaScript interaction logic',
+    'proj-web-b2': 'Designed the database schema and wrote SQL queries for CRUD operations with paginated views',
+    'contact-title': 'Contact',
+    'contact-location': 'Hefei, Anhui / Greater Bay Area',
+    'contact-uni': 'Hong Kong Baptist University',
+    'date-present': 'Present',
+    'skill-ir': 'Information Retrieval',
+    'skill-oop': 'OOP Design Patterns'
+  }
+};
+
+let currentLang = 'zh';
+function setLanguage(lang) {
+  currentLang = lang;
+  const dict = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] != null) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (dict[key] != null) el.innerHTML = dict[key];
+  });
+  document.getElementById('langBtn').textContent = lang === 'zh' ? 'EN' : '繁';
+  localStorage.setItem('lang', lang);
+}
+
+function toggleLang() {
+  setLanguage(currentLang === 'zh' ? 'en' : 'zh');
+}
+
+// Load saved language
+const savedLang = localStorage.getItem('lang') || 'zh';
+setLanguage(savedLang);
+
+// ========== World Toggle (二次元界面装修中，改为弹出提示) ==========
+let inAnime = false;
+function toggleWorld() {
+  inAnime = !inAnime;
+  if (inAnime) {
+    document.body.classList.add('in-anime');
+    localStorage.setItem('world', 'anime');
+    // 弹出装修中提示
+    document.getElementById('popupOverlay').classList.add('show');
+  } else {
+    document.body.classList.remove('in-anime');
+    localStorage.setItem('world', 'academic');
+    document.getElementById('popupOverlay').classList.remove('show');
+  }
+}
+
+function closePopup() {
+  inAnime = false;
+  document.body.classList.remove('in-anime');
+  localStorage.setItem('world', 'academic');
+  document.getElementById('popupOverlay').classList.remove('show');
+}
+
+// 页面加载时，如果之前保存了 anime 状态，重置为 academic（二次元界面装修中）
+if (localStorage.getItem('world') === 'anime') {
+  localStorage.setItem('world', 'academic');
+}
+
+// ========== Academic Page Switching ==========
+function switchAcademicPage(name) {
+  document.querySelectorAll('.ac-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-nav button').forEach(b => b.classList.remove('active'));
+
+  const page = document.getElementById('ac-' + name);
+  if (page) page.classList.add('active');
+
+  const btn = document.querySelector(`[data-page="${name}"]`);
+  if (btn) btn.classList.add('active');
+}
+
+// ========== RPG Bar Animation ==========
+function animateRpgBars() {
+  const bars = document.querySelectorAll('.rpg-bar-fill');
+  bars.forEach(b => { b.style.width = '0'; });
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      bars.forEach(b => {
+        b.style.width = b.dataset.width + '%';
+      });
+    });
+  });
+}
+
+// ========== Keyboard shortcut: press 'G' to toggle ==========
+document.addEventListener('keydown', e => {
+  if (e.key === 'g' && e.ctrlKey && !e.metaKey) {
+    e.preventDefault();
+    toggleWorld();
+  }
+});
+
+</script>
+
+</body>
+</html>
