@@ -1,231 +1,351 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   
-  
-  <title>归档: 2026 | 汐子的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="張墨汐的个人博客 — 技术、生活、思考">
-<meta property="og:type" content="website">
-<meta property="og:title" content="汐子的博客">
-<meta property="og:url" content="https://mohsichi.github.io/archives/2026/index.html">
-<meta property="og:site_name" content="汐子的博客">
-<meta property="og:description" content="張墨汐的个人博客 — 技术、生活、思考">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Mohsi">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/blog/atom.xml" title="汐子的博客" type="application/atom+xml">
-  
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>文章列表: 2026 | 汐子的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="alternate" href="/blog/atom.xml" title="汐子的博客" type="application/atom+xml">
+  <style>
+  /* ============================================================
+     WASHI THEME — 和紙 · 极简博客
+     ============================================================ */
+  :root {
+    --bg: #fdfaf6;
+    --card: #ffffff;
+    --text: #2c2416;
+    --text-light: #6b6355;
+    --text-muted: #9b9385;
+    --accent: #8b7355;
+    --accent-light: #c4a882;
+    --border: #e8e0d5;
+    --border-light: #f0ebe0;
+    --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  }
 
-  
-  
-<link rel="stylesheet" href="/blog/css/style.css">
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  
-    
-<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+  body {
+    font-family: 'Noto Serif SC', 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    font-size: 16px;
+    min-height: 100vh;
+  }
 
+  /* ── Container ── */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.8rem;
+  }
+
+  /* ── Navigation Bar ── */
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 3rem;
+  }
+  .nav-brand {
+    font-family: 'Inter', 'Noto Serif SC', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-brand:hover { color: var(--accent); }
+  .nav-links {
+    display: flex; gap: 1.8rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Inter', 'Noto Serif SC', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.current {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent-light);
+  }
+
+  /* ── Article List (Index) ── */
+  .post-list { list-style: none; }
+  .post-item {
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .post-item:first-child { padding-top: 0; }
+  .post-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem;
+    margin-bottom: 0.35rem;
+  }
+  .post-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem; color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+  .post-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem; font-weight: 500;
+    color: var(--accent);
+    background: rgba(139,115,85,0.08);
+    padding: 2px 10px; border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .post-category:hover { background: rgba(139,115,85,0.15); }
+  .post-title {
+    font-size: 1.25rem; font-weight: 600;
+    line-height: 1.45; margin-bottom: 0.4rem;
+  }
+  .post-title a {
+    color: var(--text); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .post-title a:hover { color: var(--accent); }
+  .post-excerpt {
+    font-size: 0.9rem; color: var(--text-light);
+    line-height: 1.75; margin-top: 0.4rem;
+  }
+  .post-excerpt p { margin-bottom: 0; }
+  .read-more {
+    display: inline-block; margin-top: 0.7rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--accent); text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .read-more:hover { text-decoration: underline; }
+
+  /* ── Single Post ── */
+  .single-post { padding-bottom: 3rem; }
+  .single-post .post-header { margin-bottom: 2rem; }
+  .single-post .post-title {
+    font-size: 1.7rem; font-weight: 700;
+    line-height: 1.4; margin-bottom: 0.6rem;
+  }
+  .single-post .post-meta { margin-bottom: 1.5rem; }
+  .single-post .post-content {
+    font-size: 1rem; line-height: 1.9;
+    color: var(--text);
+  }
+  .single-post .post-content h1,
+  .single-post .post-content h2,
+  .single-post .post-content h3 {
+    font-weight: 600; margin: 2rem 0 0.8rem;
+    line-height: 1.4;
+  }
+  .single-post .post-content h2 {
+    font-size: 1.3rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .single-post .post-content h3 { font-size: 1.1rem; }
+  .single-post .post-content p { margin-bottom: 1.1rem; }
+  .single-post .post-content ul, .single-post .post-content ol {
+    margin: 0.6rem 0 1.1rem 1.5rem;
+  }
+  .single-post .post-content li { margin-bottom: 0.3rem; line-height: 1.8; }
+  .single-post .post-content a {
+    color: var(--accent); text-decoration: underline;
+    text-decoration-color: var(--accent-light);
+    text-underline-offset: 3px;
+  }
+  .single-post .post-content a:hover { color: #6b5230; }
+  .single-post .post-content blockquote {
+    margin: 1.3rem 0; padding: 0.8rem 1.3rem;
+    background: rgba(139,115,85,0.04);
+    border-left: 3px solid var(--accent-light);
+    color: var(--text-light); font-style: italic;
+    border-radius: 0 6px 6px 0;
+  }
+  .single-post .post-content blockquote p:last-child { margin-bottom: 0; }
+  .single-post .post-content hr {
+    border: none; height: 1px;
+    background: var(--border-light); margin: 2rem 0;
+  }
+  .single-post .post-content code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85em;
+    background: rgba(0,0,0,0.04);
+    padding: 2px 6px; border-radius: 3px;
+  }
+  .single-post .post-content pre {
+    background: #f5f2ed;
+    padding: 1.2rem; border-radius: 8px;
+    overflow-x: auto; margin: 1.2rem 0;
+    border: 1px solid var(--border);
+  }
+  .single-post .post-content pre code {
+    background: none; padding: 0; font-size: 0.82rem;
+    line-height: 1.7;
+  }
+  .single-post .post-content img {
+    max-width: 100%; border-radius: 6px;
+    margin: 1rem 0;
+  }
+  .single-post .post-tags {
+    margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .single-post .post-tags a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem; color: var(--text-muted);
+    text-decoration: none;
+    padding: 3px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .single-post .post-tags a:hover {
+    border-color: var(--accent-light);
+    color: var(--accent);
+  }
+
+  /* ── Post Navigation ── */
+  .post-nav {
+    display: flex; justify-content: space-between;
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+  }
+  .post-nav a { color: var(--accent); text-decoration: none; }
+  .post-nav a:hover { text-decoration: underline; }
+  .post-nav .prev, .post-nav .next { max-width: 48%; }
+
+  /* ── Page (关于 etc.) ── */
+  .static-page { padding-bottom: 3rem; }
+  .static-page h1 {
+    font-size: 1.7rem; font-weight: 700;
+    margin-bottom: 1.5rem; line-height: 1.4;
+  }
+  .static-page .page-content {
+    font-size: 1rem; line-height: 1.9;
+    color: var(--text);
+  }
+  .static-page .page-content p { margin-bottom: 1.1rem; }
+  .static-page .page-content a {
+    color: var(--accent); text-decoration: underline;
+    text-decoration-color: var(--accent-light);
+    text-underline-offset: 3px;
+  }
+
+  /* ── Archive Page ── */
+  .archive-list { list-style: none; }
+  .archive-year {
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--text);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .archive-item {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding: 0.5rem 0;
+  }
+  .archive-item .archive-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem; color: var(--text-muted);
+    white-space: nowrap; min-width: 80px;
+  }
+  .archive-item a {
+    color: var(--text); text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .archive-item a:hover { color: var(--accent); }
+
+  /* ── Pagination ── */
+  .pagination {
+    display: flex; justify-content: center; gap: 0.5rem;
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+  }
+  .pagination a, .pagination span {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 2rem; height: 2rem; padding: 0 0.5rem;
+    text-decoration: none; border-radius: 4px;
+    color: var(--text-light);
+  }
+  .pagination a:hover { background: var(--border-light); }
+  .pagination span.current {
+    background: var(--accent); color: #fff; font-weight: 600;
+  }
+
+  /* ── Footer ── */
+  .site-footer {
+    margin-top: 4rem; padding: 2rem 0;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem; color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .site-footer a { color: var(--accent); text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .container { padding: 0 1.2rem; }
+    .nav-bar { flex-direction: column; gap: 0.8rem; }
+    .nav-links { gap: 1.2rem; }
+    .single-post .post-title { font-size: 1.4rem; }
+  }
+  </style>
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">汐子的博客</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/blog/" id="subtitle">一片新的原野 · 开始播种</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/blog/">首页</a>
-        
-          <a class="main-nav-link" href="/blog/archives">归档</a>
-        
-          <a class="main-nav-link" href="/blog/categories">分类</a>
-        
-          <a class="main-nav-link" href="/blog/tags">标签</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          
-            <a class="nav-icon" href="https://mohsichi.github.io"><span class="fa fa-返回主页"></span></a>
-          
-            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/MohsiChi"><span class="fa fa-GitHub"></span></a>
-          
-        
-        
-          <a class="nav-icon" href="/blog/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mohsichi.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2026" class="archive-year">2026</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/2026/06/01/hello-world-%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%BC%A0/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-06-01T09:55:40.000Z" itemprop="datePublished">6月 1</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2026/06/01/hello-world-%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%BC%A0/">Hello World — 博客开张啦</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E6%9D%82%E8%B0%88/">杂谈</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/blog/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">生活</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2026/06/">六月 2026</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/blog/2026/06/01/hello-world-%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%BC%A0/">Hello World — 博客开张啦</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-        © 2026 Mohsi · Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/hexojs/hexo-theme-landscape" target="_blank">Landscape</a>
-      
-      &copy; 2026 Mohsi<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/blog/" class="mobile-nav-link">首页</a>
-  
-    <a href="/blog/archives" class="mobile-nav-link">归档</a>
-  
-    <a href="/blog/categories" class="mobile-nav-link">分类</a>
-  
-    <a href="/blog/tags" class="mobile-nav-link">标签</a>
-  
+  <div class="container">
+    <nav class="nav-bar">
+  <a class="nav-brand" href="/blog/">汐子的博客</a>
+  <ul class="nav-links">
+    <li><a href="https://mohsichi.github.io/">首页</a></li>
+    <li><a href="/blog/archives" class="current">文章列表</a></li>
+    <li><a href="/blog/about" >关于</a></li>
+  </ul>
 </nav>
+
     
+  <div class="archive-list">
+    
+    
+      
+      
+        
+        
+        <h2 class="archive-year">2026</h2>
+        <div class="archive-year-posts">
+      
+      <div class="archive-item">
+        <span class="archive-date">06-01</span>
+        <a href="/blog/2026/06/01/hello-world-%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%BC%A0/">Hello World — 博客开张啦</a>
+      </div>
+    
+    </div>
+  </div>
 
 
-<script src="/blog/js/jquery-3.6.4.min.js"></script>
 
-
-
-  
-<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/blog/js/script.js"></script>
-
-
-
-
+    <footer class="site-footer">
+  <p>© 2026 <a href="https://mohsichi.github.io/">Mohsi</a> · 由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 驱动 · <a href="/blog/atom.xml">RSS</a></p>
+</footer>
 
   </div>
 </body>
