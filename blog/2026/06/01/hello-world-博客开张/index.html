@@ -80,6 +80,17 @@
     color: var(--accent);
     border-bottom: 1.5px solid var(--accent-dim);
   }
+  .masthead .back-home {
+    display: inline-block; margin-top: 0.7rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .masthead .back-home:hover { opacity: 1; color: var(--accent); }
   .masthead-rule {
     border: none;
     height: 1px;
@@ -387,10 +398,12 @@
   <a class="blog-title" href="/blog/">汐子的博客</a>
   <nav>
     <ul class="blog-nav">
-      <li><a href="https://mohsichi.github.io/">首页</a></li>
+      <li><a href="/blog/" >首页</a></li>
       <li><a href="/blog/archives" >文章列表</a></li>
       <li><a href="/blog/about" >关于</a></li>
     </ul>
+    </ul>
+    <a class="back-home" href="https://mohsichi.github.io/">← 返回个人主页</a>
   </nav>
 </header>
 <hr class="masthead-rule">
